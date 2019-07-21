@@ -1,2 +1,8 @@
-export * from './componentsModel'
-export * from './stateModel'
+// 只定义store 中的state的类型 组件的类型定义在组件内部
+export interface IStoreModel {
+  global: IGlobalModel
+}
+
+export interface IGlobalModel {
+  tabbarItem: number
+}

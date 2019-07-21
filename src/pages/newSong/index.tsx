@@ -1,32 +1,20 @@
 import * as React from 'react'
-// import { Dispatch } from 'redux'
 import { connect } from 'react-redux'
-// import { Link } from 'react-router-dom'
-import { ITabbarModel } from 'model'
-// import * as actions from 'store/actions'
 import './index.styl'
+import { withRouter, RouteComponentProps } from 'react-router-dom'
 
-class NewSong extends React.PureComponent<ITabbarModel, {}> {
+type PathParamsType = {}
+type NewSongModel = RouteComponentProps<PathParamsType> & {}
+
+class NewSong extends React.PureComponent<NewSongModel, {}> {
   public render() {
-    return (
-      <div className="new-song">
-        <div className="swiper">aaa</div>
-      </div>
-    )
+    return <div className="new-song">轮播</div>
   }
 }
 
-// const mapState = (state: IStoreModel) => ({
-//   tabbarItem: state.global.tabbarItem
-// })
-// const mapDispath = (dispatch: Dispatch) => {
-//   return {
-//     changeTabbarItem: (payload: number) =>
-//       dispatch(actions.changeTabbarItem(payload))
-//   }
-// }
-
-export default connect(
-  null,
-  null
-)(NewSong)
+export default withRouter(
+  connect(
+    null,
+    null
+  )(NewSong)
+)

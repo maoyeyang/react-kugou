@@ -1,12 +1,18 @@
 import * as React from 'react'
 import { Dispatch } from 'redux'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
-import { ITabbarModel, IStoreModel } from 'model'
+import { Link, withRouter, RouteComponentProps } from 'react-router-dom'
+import { IStoreModel } from 'model'
 import * as actions from 'store/actions'
 import './index.styl'
 
-class Tabbar extends React.PureComponent<ITabbarModel, {}> {
+type PathParamsType = {}
+type TabbarModel = RouteComponentProps<PathParamsType> & {
+  tabbarItem: number
+  changeTabbarItem: (tabbarItem: number) => void
+}
+
+class Tabbar extends React.PureComponent<TabbarModel, {}> {
   public render() {
     const index = this.props.tabbarItem
     return (
@@ -70,7 +76,9 @@ const mapDispath = (dispatch: Dispatch) => {
   }
 }
 
-export default connect(
-  mapState,
-  mapDispath
-)(Tabbar)
+export default withRouter(
+  connect(
+    mapState,
+    mapDispath
+  )(Tabbar)
+)
