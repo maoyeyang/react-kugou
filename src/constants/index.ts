@@ -1,1 +1,3 @@
-export * from './global'
+export const GLOBAL_CHANGE_TABBAR_ITEM: string = 'GLOBAL_CHANGE_TABBAR_ITEM'
+
+export const NEWSONG_CHANGE_DATA: string = 'NEWSONG_CHANGE_DATA'

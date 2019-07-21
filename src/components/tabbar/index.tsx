@@ -12,7 +12,7 @@ type TabbarModel = RouteComponentProps<PathParamsType> & {
   changeTabbarItem: (tabbarItem: number) => void
 }
 
-class Tabbar extends React.PureComponent<TabbarModel, {}> {
+class Tabbar extends React.PureComponent<TabbarModel> {
   public render() {
     const index = this.props.tabbarItem
     return (
@@ -76,9 +76,7 @@ const mapDispath = (dispatch: Dispatch) => {
   }
 }
 
-export default withRouter(
-  connect(
-    mapState,
-    mapDispath
-  )(Tabbar)
-)
+export default connect(
+  mapState,
+  mapDispath
+)(withRouter(Tabbar))

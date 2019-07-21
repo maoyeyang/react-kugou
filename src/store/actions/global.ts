@@ -1,8 +1,8 @@
 import { createAction } from 'redux-actions'
 import { IGlobalModel } from 'model'
-import * as constants from 'constants/global'
+import { GLOBAL_CHANGE_TABBAR_ITEM } from 'constants/index'
 
 export const changeTabbarItem = createAction<IGlobalModel, number>(
-  constants.GLOBAL_CHANGE_TABBAR_ITEM,
+  GLOBAL_CHANGE_TABBAR_ITEM,
   (tabbarItem: number) => ({ tabbarItem })
 )

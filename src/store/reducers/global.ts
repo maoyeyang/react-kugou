@@ -1,5 +1,5 @@
 import { handleActions } from 'redux-actions'
-import { GLOBAL_CHANGE_TABBAR_ITEM } from 'constants/global'
+import { GLOBAL_CHANGE_TABBAR_ITEM } from 'constants/index'
 import { IGlobalModel } from 'model'
 import { defaultGlobalState } from '../defaultStates'
 
