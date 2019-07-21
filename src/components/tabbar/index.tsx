@@ -2,8 +2,8 @@ import * as React from 'react'
 import { Dispatch } from 'redux'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { ITabbarModel, IStoreModel } from '../../model'
-import * as actions from '../../store/actions'
+import { ITabbarModel, IStoreModel } from 'model'
+import * as actions from 'store/actions'
 import './index.styl'
 
 class Tabbar extends React.PureComponent<ITabbarModel, {}> {
