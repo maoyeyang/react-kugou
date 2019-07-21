@@ -1,0 +1,40 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "baseUrl": "src",
+    "paths": {
+      "src/*": ["src/*"],
+      "api/*": ["src/api/*"],
+      "common/*": ["src/common/*"],
+      "components/*": ["src/components/*"],
+      "constants/*": ["src/constants/*"],
+      "model/*": ["src/model/*"],
+      "pages/*": ["src/pages/*"],
+      "router/*": ["src/router/*"],
+      "store/*": ["src/store/*"],
+      "actions/*": ["src/store/actions/*"],
+      "defaultStates/*": ["src/store/defaultStates/*"],
+      "reducers/*": ["src/store/reducers/*"]
+    },
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "preserve"
+  },
+  "include": [
+    "src"
+  ]
+}
