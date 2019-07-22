@@ -1,13 +1,12 @@
 import * as React from 'react'
 import { Dispatch } from 'redux'
 import { connect } from 'react-redux'
-import { Link, withRouter, RouteComponentProps } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { IStoreModel } from 'model'
 import * as actions from 'store/actions'
 import styles from './tabbar.module.styl'
 
-type PathParamsType = {}
-type TabbarModel = RouteComponentProps<PathParamsType> & {
+type TabbarModel = {
   tabbarItem: number
   changeTabbarItem: (tabbarItem: number) => void
 }
@@ -79,4 +78,4 @@ const mapDispath = (dispatch: Dispatch) => {
 export default connect(
   mapState,
   mapDispath
-)(withRouter(Tabbar))
+)(Tabbar)
