@@ -3,7 +3,7 @@ import { NEWSONG_CHANGE_DATA } from 'constants/index'
 import { INewSongModel } from 'model'
 import { defaultNewSongState } from '../defaultStates'
 
-export const newSongReducer = handleActions<INewSongModel>(
+const newSongReducer = handleActions<INewSongModel>(
   {
     [NEWSONG_CHANGE_DATA]: (state: any, action: any) => {
       return {
@@ -13,3 +13,5 @@ export const newSongReducer = handleActions<INewSongModel>(
   },
   defaultNewSongState
 )
+
+export default newSongReducer

@@ -3,7 +3,7 @@ import { GLOBAL_CHANGE_TABBAR_ITEM } from 'constants/index'
 import { IGlobalModel } from 'model'
 import { defaultGlobalState } from '../defaultStates'
 
-export const globalReducer = handleActions<IGlobalModel>(
+const globalReducer = handleActions<IGlobalModel>(
   {
     [GLOBAL_CHANGE_TABBAR_ITEM]: (state: any, action: any) => {
       return {
@@ -14,3 +14,4 @@ export const globalReducer = handleActions<IGlobalModel>(
   },
   defaultGlobalState
 )
+export default globalReducer

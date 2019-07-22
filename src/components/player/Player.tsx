@@ -6,7 +6,9 @@ import styles from './player.module.styl'
 
 type PathParamsType = {}
 type PlayerModel = RouteComponentProps<PathParamsType> & {
-  [propName: string]: any
+  playerList: object[]
+  play: boolean
+  playInfo: object
 }
 
 class Player extends React.PureComponent<PlayerModel> {
@@ -35,7 +37,7 @@ class Player extends React.PureComponent<PlayerModel> {
 }
 
 const mapState = (state: IStoreModel) => ({
-  ...state.global
+  ...state.player
 })
 
 export default connect(

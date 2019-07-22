@@ -4,5 +4,7 @@ import { GLOBAL_CHANGE_TABBAR_ITEM } from 'constants/index'
 
 export const changeTabbarItem = createAction<IGlobalModel, number>(
   GLOBAL_CHANGE_TABBAR_ITEM,
-  (tabbarItem: number) => ({ tabbarItem })
+  (tabbarItem: number) => ({
+    tabbarItem
+  })
 )
