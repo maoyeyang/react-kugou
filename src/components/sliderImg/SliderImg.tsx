@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
-import Carousel from 'components/carousel'
+import Carousel from 'src/components/carousel/Carousel'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
 import { IStoreModel } from 'model'
 import styles from './sliderImg.module.styl'
@@ -17,6 +17,11 @@ class SliderImg extends React.PureComponent<SliderImgModel> {
       <div className={styles.sliderWrapper}>
         {!!banner.length && (
           <Carousel>
+            <div>
+              <a href="#">
+                <img src={require('../../assests/images/banner.jpg')} />
+              </a>
+            </div>
             {banner.map((item: any, index: number) => (
               <div key={index}>
                 <a href={item.extra.tourl}>

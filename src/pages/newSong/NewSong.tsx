@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import styles from './newSong.module.styl'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
 import SliderImg from 'components/sliderImg/SliderImg'
+import SongList from 'components/songList/SongList'
 import * as actions from 'store/actions'
 
 type PathParamsType = {}
@@ -16,6 +17,7 @@ class NewSong extends React.PureComponent<NewSongModel, {}> {
     return (
       <div className={styles.newSong}>
         <SliderImg />
+        <SongList />
       </div>
     )
   }

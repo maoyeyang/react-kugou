@@ -176,6 +176,7 @@ export default class Carousel extends Component<
   render() {
     // console.log("Carouseld的render")
     const { dots, currentPageIndex } = this.state
+    console.log(dots)
     // console.log(dots.length,currentPageIndex)
     // console.log("dot"+ (currentPageIndex===1?" active":""))
     return (
@@ -188,7 +189,9 @@ export default class Carousel extends Component<
             dots.map((item, index) => (
               <span
                 className={
-                  styles.dot + (currentPageIndex === index ? styles.active : '')
+                  styles.dot +
+                  ' ' +
+                  (currentPageIndex === index ? styles.active : '')
                 }
                 key={index}
               />
