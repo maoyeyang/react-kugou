@@ -1,7 +1,66 @@
 .player
   width: 100%
-  height: 3rem
+  height: 4rem
   position: fixed
   bottom: 0px
   left: 0px
-  background-color: pink
+  background-color: rgba(0, 0, 0, 0.9)
+  display: flex
+  justify-content: space-between
+  .left
+    flex: 13
+    padding: 0.15rem 0.2rem
+    .img
+      width: 3.7rem
+      height: 3.7rem
+      border-radius: 5px
+      display: inline-block
+      vertical-align: middle
+    .text
+      display: inline-block
+      vertical-align: middle
+      padding-left: 0.4rem
+      width: 70%
+      .songName
+        font-size: 0.85rem
+        color: #fff
+        overflow: hidden
+        text-overflow: ellipsis
+        white-space: nowrap
+      .singer
+        font-size: 0.77rem
+        overflow: hidden
+        color: #888
+        text-overflow: ellipsis
+        white-space: nowrap
+  .right
+    flex: 7
+    display: flex
+    justify-content: space-between
+    .icon
+      width: 2rem
+      height: 4rem
+      display: inline-block
+      &.play
+        background: url('../../assests/images/play_icon.png') no-repeat
+        background-size: 1.9rem 1.9rem
+        background-position: center 47%
+      &.pause
+        background: url('../../assests/images/pause_icon.png') no-repeat
+        background-size: 1.8rem 1.8rem
+        background-position: center center
+    .iconNext
+      background: url('../../assests/images/next_icon.png') no-repeat
+      width: 2rem
+      height: 4rem
+      display: inline-block
+      background-size: 1.8rem 1.8rem
+      background-position: center center
+    .iconDownLoad
+      background: url('../../assests/images/download_icon.png') no-repeat
+      width: 2rem
+      height: 4rem
+      margin-right: 0.3rem
+      display: inline-block
+      background-size: 1.8rem 1.8rem
+      background-position: center center

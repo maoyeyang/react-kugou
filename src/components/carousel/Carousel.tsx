@@ -56,9 +56,7 @@ export default class Carousel extends Component<
   }
 
   componentDidMount() {
-    // console.log("Carouseld的componentDidMount")
     this.update()
-
     window.addEventListener('resize', () => {
       if (!this.carouselBS || !this.carouselBS.enabled) {
         return
@@ -137,10 +135,8 @@ export default class Carousel extends Component<
   _setSlideWidth(isResize: boolean = false) {
     if (!this.carouselGroup.current || !this.carousel.current) return
     this.children = this.carouselGroup.current.children
-    // console.log(this.children.length,this.children[0])
     let width = 0
     let sliderWidth = this.carousel.current.clientWidth
-    // console.log(sliderWidth)
     for (let i = 0; i < this.children.length; i++) {
       let child = this.children[i]
       addClass(child, styles.carouselItem)
@@ -165,7 +161,6 @@ export default class Carousel extends Component<
   }
   _onScrollEnd() {
     let pageIndex = this.carouselBS.getCurrentPage().pageX
-    // console.log(this)
     this.setState({
       currentPageIndex: pageIndex
     })
@@ -174,11 +169,7 @@ export default class Carousel extends Component<
     }
   }
   render() {
-    // console.log("Carouseld的render")
     const { dots, currentPageIndex } = this.state
-    console.log(dots)
-    // console.log(dots.length,currentPageIndex)
-    // console.log("dot"+ (currentPageIndex===1?" active":""))
     return (
       <div className={styles.carousel} ref={this.carousel}>
         <div className={styles.carouselGroup} ref={this.carouselGroup}>

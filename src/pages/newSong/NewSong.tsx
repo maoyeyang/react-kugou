@@ -5,6 +5,7 @@ import styles from './newSong.module.styl'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
 import SliderImg from 'components/sliderImg/SliderImg'
 import SongList from 'components/songList/SongList'
+import Scroll from 'components/scroll/Scroll'
 import * as actions from 'store/actions'
 
 type PathParamsType = {}
@@ -16,8 +17,16 @@ class NewSong extends React.PureComponent<NewSongModel, {}> {
   public render() {
     return (
       <div className={styles.newSong}>
-        <SliderImg />
-        <SongList />
+        <Scroll scrollStyle={styles.scrollStyle}>
+          <div
+            onClick={() => {
+              console.log(111)
+            }}
+          >
+            <SliderImg />
+            <SongList />
+          </div>
+        </Scroll>
       </div>
     )
   }

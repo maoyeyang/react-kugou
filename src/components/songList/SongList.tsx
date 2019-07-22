@@ -14,7 +14,6 @@ type SongListModel = RouteComponentProps<PathParamsType> & {
 class SongList extends React.PureComponent<SongListModel> {
   public render() {
     const data = this.props.data || []
-    console.log(data)
     return (
       <div className={styles.list}>
         {!!data.length &&
