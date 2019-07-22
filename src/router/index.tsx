@@ -1,8 +1,8 @@
 import * as React from 'react'
 import { HashRouter, Switch, Route, Redirect } from 'react-router-dom'
-import Header from 'components/header'
-import Tabbar from 'components/tabbar'
-import NewSong from 'pages/newSong'
+import Header from 'components/header/Header'
+import Tabbar from 'components/tabbar/Tabbar'
+import NewSong from 'pages/newSong/NewSong'
 
 export default class RouteConfig extends React.Component {
   public render() {

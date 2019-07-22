@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { Link, withRouter, RouteComponentProps } from 'react-router-dom'
 import { IStoreModel } from 'model'
 import * as actions from 'store/actions'
-import './index.styl'
+import styles from './tabbar.module.styl'
 
 type PathParamsType = {}
 type TabbarModel = RouteComponentProps<PathParamsType> & {
@@ -16,10 +16,10 @@ class Tabbar extends React.PureComponent<TabbarModel> {
   public render() {
     const index = this.props.tabbarItem
     return (
-      <div className="tabbar">
+      <div className={styles.tabbar}>
         <Link
           to="/home/newsong"
-          className="tabbar-item"
+          className={styles.tabbarItem}
           onClick={() => {
             this.handleChangeRoute(0)
           }}
@@ -29,7 +29,7 @@ class Tabbar extends React.PureComponent<TabbarModel> {
         </Link>
         <Link
           to="/home/rank"
-          className="tabbar-item"
+          className={styles.tabbarItem}
           onClick={() => {
             this.handleChangeRoute(1)
           }}
@@ -39,7 +39,7 @@ class Tabbar extends React.PureComponent<TabbarModel> {
         </Link>
         <Link
           to="/home/plist"
-          className="tabbar-item"
+          className={styles.tabbarItem}
           onClick={() => {
             this.handleChangeRoute(2)
           }}
@@ -49,7 +49,7 @@ class Tabbar extends React.PureComponent<TabbarModel> {
         </Link>
         <Link
           to="/home/singer"
-          className="tabbar-item"
+          className={styles.tabbarItem}
           onClick={() => {
             this.handleChangeRoute(3)
           }}
@@ -57,7 +57,7 @@ class Tabbar extends React.PureComponent<TabbarModel> {
         >
           歌手
         </Link>
-        <div className={`tabbar-bottom bottom-${index}`} />
+        <div className={styles.tabbarBottom + ' ' + styles[`bottom${index}`]} />
       </div>
     )
   }

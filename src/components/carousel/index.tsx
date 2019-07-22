@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './index.styl'
+import styles from './carousel.module.styl'
 import BScroll from 'better-scroll'
 import { addClass } from 'common/js/dom'
 
@@ -143,7 +143,7 @@ export default class Carousel extends Component<
     // console.log(sliderWidth)
     for (let i = 0; i < this.children.length; i++) {
       let child = this.children[i]
-      addClass(child, 'carousel-item')
+      addClass(child, styles.carouselItem)
 
       child.style.width = sliderWidth + 'px'
       width += sliderWidth
@@ -179,16 +179,16 @@ export default class Carousel extends Component<
     // console.log(dots.length,currentPageIndex)
     // console.log("dot"+ (currentPageIndex===1?" active":""))
     return (
-      <div className="carousel" ref={this.carousel}>
-        <div className="carousel-group" ref={this.carouselGroup}>
+      <div className={styles.carousel} ref={this.carousel}>
+        <div className={styles.carouselGroup} ref={this.carouselGroup}>
           {this.props.children}
         </div>
-        <div className="dots">
+        <div className={styles.dots}>
           {dots.length &&
             dots.map((item, index) => (
               <span
                 className={
-                  'dot' + (currentPageIndex === index ? ' active' : '')
+                  styles.dot + (currentPageIndex === index ? styles.active : '')
                 }
                 key={index}
               />

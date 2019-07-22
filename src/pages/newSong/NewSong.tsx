@@ -1,9 +1,9 @@
 import * as React from 'react'
 import { Dispatch } from 'redux'
 import { connect } from 'react-redux'
-import './index.styl'
+import styles from './newSong.module.styl'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
-import SliderImg from 'components/sliderImg'
+import SliderImg from 'components/sliderImg/SliderImg'
 import * as actions from 'store/actions'
 
 type PathParamsType = {}
@@ -14,7 +14,7 @@ type NewSongModel = RouteComponentProps<PathParamsType> & {
 class NewSong extends React.PureComponent<NewSongModel, {}> {
   public render() {
     return (
-      <div className="new-song">
+      <div className={styles.newSong}>
         <SliderImg />
       </div>
     )

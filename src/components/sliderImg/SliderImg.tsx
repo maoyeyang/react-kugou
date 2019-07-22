@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import Carousel from 'components/carousel'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
 import { IStoreModel } from 'model'
-import './index.styl'
+import styles from './sliderImg.module.styl'
 
 type PathParamsType = {}
 type SliderImgModel = RouteComponentProps<PathParamsType> & {
@@ -14,7 +14,7 @@ class SliderImg extends React.PureComponent<SliderImgModel> {
   public render() {
     const banner = this.props.banner || []
     return (
-      <div className="slider-wrapper">
+      <div className={styles.sliderWrapper}>
         {!!banner.length && (
           <Carousel>
             {banner.map((item: any, index: number) => (
