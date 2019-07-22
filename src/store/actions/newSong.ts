@@ -9,12 +9,13 @@ export const changeNewSongData = createAction<INewSongModel, INewSongModel>(
   (data: INewSongModel) => data
 )
 
-export const getNewSongData = () => {
+export const getNewSongData = (newSong: Object) => {
   return (dispatch: Dispatch) => {
-    axios.get('/api/?json=true').then(res => {
-      const result = res.data
-      console.log(result)
-      dispatch(changeNewSongData(result))
-    })
+    if (JSON.stringify(newSong) === '{}') {
+      axios.get('/api/?json=true').then(res => {
+        dispatch(changeNewSongData(res.data))
+      })
+      return
+    }
   }
 }

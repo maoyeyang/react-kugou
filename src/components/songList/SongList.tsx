@@ -18,9 +18,21 @@ class SongList extends React.PureComponent<SongListModel> {
       <div className={styles.list}>
         {!!data.length &&
           data.map((item: any) => (
-            <div key={item.hash} className={styles.listItem}>
+            <div
+              key={item.hash}
+              className={styles.listItem}
+              onClick={() => {
+                console.log('播放', item)
+              }}
+            >
               <div className={styles.itemName}>{item.filename}</div>
-              <div className={styles.downLoad}>
+              <div
+                className={styles.downLoad}
+                onClick={e => {
+                  console.log('下载')
+                  e.stopPropagation()
+                }}
+              >
                 <i className={styles.iconDownLoad} />
               </div>
             </div>
