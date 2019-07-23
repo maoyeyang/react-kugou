@@ -1,11 +1,9 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
 import Carousel from 'common/components/carousel/Carousel'
-import { withRouter, RouteComponentProps } from 'react-router-dom'
 import styles from './sliderImg.module.styl'
 
-type PathParamsType = {}
-type SliderImgModel = RouteComponentProps<PathParamsType> & {
+type SliderImgModel = {
   [propName: string]: any
 }
 
@@ -44,4 +42,4 @@ const mapState = (state: any) => ({
 export default connect(
   mapState,
   null
-)(withRouter(SliderImg))
+)(SliderImg)

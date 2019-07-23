@@ -4,6 +4,7 @@ import Header from 'components/header/Header'
 import Tabbar from 'components/tabbar/Tabbar'
 import Player from 'components/player/Player'
 import NewSong from 'pages/newSong/NewSong'
+import SongInfo from 'pages/songInfo/SongInfo'
 
 export default class RouteConfig extends React.Component {
   public render() {
@@ -14,8 +15,9 @@ export default class RouteConfig extends React.Component {
         <Route path="/home" component={Tabbar} />
         <Switch>
           <Route path="/home/newsong" component={NewSong} />
+          <Route path="/songinfo" component={SongInfo} />
         </Switch>
-        <Route path="/home" component={Player} />
+        <Route path="/" component={Player} />
       </HashRouter>
     )
   }
