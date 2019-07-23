@@ -2,19 +2,17 @@
 export interface IStoreModel {
   global: IGlobalModel
   newSong: INewSongModel
-  player: IPlayerModel
 }
 
 export interface IGlobalModel {
   tabbarItem: number
+  player: {
+    playerList: object[]
+    isPlay: boolean
+    playInfo: object
+  }
 }
 
 export interface INewSongModel {
   [propName: string]: any
-}
-
-export interface IPlayerModel {
-  playerList: object[]
-  play: boolean
-  playInfo: object
 }

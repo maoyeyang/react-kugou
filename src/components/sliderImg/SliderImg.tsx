@@ -1,8 +1,7 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
-import Carousel from 'src/components/carousel/Carousel'
+import Carousel from 'common/components/carousel/Carousel'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
-import { IStoreModel } from 'model'
 import styles from './sliderImg.module.styl'
 
 type PathParamsType = {}
@@ -36,8 +35,10 @@ class SliderImg extends React.PureComponent<SliderImgModel> {
   }
 }
 
-const mapState = (state: IStoreModel) => ({
-  ...state.newSong
+const mapState = (state: any) => ({
+  banner:
+    state.getIn(['newSong', 'banner']) &&
+    state.getIn(['newSong', 'banner']).toJS()
 })
 
 export default connect(

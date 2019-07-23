@@ -2,7 +2,6 @@ import * as React from 'react'
 // import { Dispatch } from 'redux'
 import { connect } from 'react-redux'
 import { withRouter, RouteComponentProps } from 'react-router-dom'
-import { IStoreModel } from 'model'
 // import * as actions from 'store/actions'
 import styles from './songList.module.styl'
 
@@ -42,8 +41,9 @@ class SongList extends React.PureComponent<SongListModel> {
   }
 }
 
-const mapState = (state: IStoreModel) => ({
-  ...state.newSong
+const mapState = (state: any) => ({
+  data:
+    state.getIn(['newSong', 'data']) && state.getIn(['newSong', 'data']).toJS()
 })
 
 export default connect(

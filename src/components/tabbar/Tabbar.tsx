@@ -2,7 +2,6 @@ import * as React from 'react'
 import { Dispatch } from 'redux'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { IStoreModel } from 'model'
 import * as actions from 'store/actions'
 import styles from './tabbar.module.styl'
 
@@ -65,8 +64,8 @@ class Tabbar extends React.PureComponent<TabbarModel> {
   }
 }
 
-const mapState = (state: IStoreModel) => ({
-  tabbarItem: state.global.tabbarItem
+const mapState = (state: any) => ({
+  tabbarItem: state.getIn(['global', 'tabbarItem'])
 })
 const mapDispath = (dispatch: Dispatch) => {
   return {

@@ -2,10 +2,9 @@ import * as React from 'react'
 import { Dispatch } from 'redux'
 import { connect } from 'react-redux'
 import styles from './newSong.module.styl'
-import { IStoreModel } from 'model'
 import SliderImg from 'components/sliderImg/SliderImg'
 import SongList from 'components/songList/SongList'
-import Scroll from 'components/scroll/Scroll'
+import Scroll from 'common/components/scroll/Scroll'
 import * as actions from 'store/actions'
 
 type NewSongModel = {
@@ -30,9 +29,11 @@ class NewSong extends React.PureComponent<NewSongModel, {}> {
     this.props.getNewSongData(this.props.newSong)
   }
 }
-const mapState = (state: IStoreModel) => ({
-  newSong: state.newSong
-})
+const mapState = (state: any) => {
+  return {
+    newSong: state.getIn(['newSong'])
+  }
+}
 
 const mapDispatch = (dispatch: Dispatch) => ({
   getNewSongData(newSong: Object) {

@@ -6,10 +6,7 @@ import { defaultGlobalState } from '../defaultStates'
 const globalReducer = handleActions<IGlobalModel>(
   {
     [GLOBAL_CHANGE_TABBAR_ITEM]: (state: any, action: any) => {
-      return {
-        ...state,
-        tabbarItem: action.payload.tabbarItem
-      }
+      return state.set('tabbarItem', action.payload.tabbarItem)
     }
   },
   defaultGlobalState

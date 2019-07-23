@@ -1,17 +1,15 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
-import { withRouter, RouteComponentProps } from 'react-router-dom'
-import { IStoreModel } from 'model'
 import styles from './player.module.styl'
+import BaseComponents from 'common/components/baseComponents/BaseComponents'
 
-type PathParamsType = {}
-type PlayerModel = RouteComponentProps<PathParamsType> & {
-  playerList: object[]
-  play: boolean
+type PlayerModel = {
+  playerList: []
+  isPlay: boolean
   playInfo: object
 }
 
-class Player extends React.PureComponent<PlayerModel> {
+class Player extends BaseComponents {
   public render() {
     console.log(this.props)
     return (
@@ -36,11 +34,11 @@ class Player extends React.PureComponent<PlayerModel> {
   }
 }
 
-const mapState = (state: IStoreModel) => ({
-  ...state.player
+const mapState = (state: any) => ({
+  player: state.getIn(['global', 'player'])
 })
 
 export default connect(
   mapState,
   null
-)(withRouter(Player))
+)(Player)
