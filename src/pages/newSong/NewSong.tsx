@@ -9,13 +9,16 @@ import * as actions from 'store/actions'
 
 type NewSongModel = {
   newSong: any
+  play: boolean
   getNewSongData: (newSong: Object) => void
 }
 
 class NewSong extends React.PureComponent<NewSongModel, {}> {
   public render() {
     return (
-      <div className={styles.newSong}>
+      <div
+        className={styles.newSong + ' ' + (this.props.play ? styles.play : '')}
+      >
         <Scroll scrollStyle={styles.scrollStyle}>
           <div>
             <SliderImg />
@@ -31,7 +34,8 @@ class NewSong extends React.PureComponent<NewSongModel, {}> {
 }
 const mapState = (state: any) => {
   return {
-    newSong: state.getIn(['newSong'])
+    newSong: state.getIn(['newSong']),
+    play: JSON.stringify(state.getIn(['global', 'player', 'playInfo'])) !== '{}'
   }
 }
 

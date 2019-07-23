@@ -10,6 +10,7 @@ export interface IGlobalModel {
     playerList: object[]
     isPlay: boolean
     playInfo: object
+    lyric: any
   }
 }
 

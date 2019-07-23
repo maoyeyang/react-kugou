@@ -1,12 +1,10 @@
 import * as React from 'react'
-// import { Dispatch } from 'redux'
+import { Dispatch } from 'redux'
 import { connect } from 'react-redux'
-import { withRouter, RouteComponentProps } from 'react-router-dom'
-// import * as actions from 'store/actions'
+import * as actions from 'store/actions'
 import styles from './songList.module.styl'
 
-type PathParamsType = {}
-type SongListModel = RouteComponentProps<PathParamsType> & {
+type SongListModel = {
   [propName: string]: any
 }
 
@@ -21,7 +19,7 @@ class SongList extends React.PureComponent<SongListModel> {
               key={item.hash}
               className={styles.listItem}
               onClick={() => {
-                console.log('播放', item)
+                this.props.playSong({ item, data })
               }}
             >
               <div className={styles.itemName}>{item.filename}</div>
@@ -45,8 +43,13 @@ const mapState = (state: any) => ({
   data:
     state.getIn(['newSong', 'data']) && state.getIn(['newSong', 'data']).toJS()
 })
+const mapDispath = (dispatch: Dispatch) => {
+  return {
+    playSong: (payload: any) => actions.getPlaySongData(payload)(dispatch)
+  }
+}
 
 export default connect(
   mapState,
-  null
-)(withRouter(SongList))
+  mapDispath
+)(SongList)

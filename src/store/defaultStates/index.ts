@@ -6,7 +6,8 @@ export const defaultGlobalState: IGlobalModel = immutable.fromJS({
   player: {
     playerList: [],
     isPlay: false,
-    playInfo: { time: new Date() }
+    playInfo: {},
+    lyric: ''
   }
 })
 export const defaultNewSongState: INewSongModel = immutable.fromJS({})
