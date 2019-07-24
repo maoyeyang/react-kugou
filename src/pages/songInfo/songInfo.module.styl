@@ -1,6 +1,6 @@
 .songInfo
   width: 100%
-  margin-top: 3rem
+  padding-top: 3rem
   height: 100vh
   .filter
     width: 100%
@@ -10,7 +10,64 @@
     left: 0px
     background: url('../../assests/images/logo_kugou.png') no-repeat center center
     background-size: cover
-    filter: blur(5px)
+    filter: blur(3px)
+    z-index: -1
+  .bgc
+    width: 100%
+    height: 100vh
+    position: fixed
+    top: 0px
+    left: 0px
+    background-color: rgba(0, 0, 0, 0.5)
+    z-index: -1
   .content
     width: 100%
     height: 100%
+    color: #fff
+    text-align: center
+    overflow: hidden
+    .lyric
+      height: 70%
+      margin: 8% 0
+      text-align: center
+      overflow: hidden
+      .all
+        padding: 50% 0
+        .item
+          padding: 7px 2rem
+          &.active
+            color: #d1c90e
+    .bottom
+      height: 20%
+      .playOperate
+        width: 100%
+        height: 4rem
+        text-align: center
+        .btnPrev
+          background: url('../../assests/images/play_prev.png') no-repeat
+          background-size: 100%
+          width: 3rem
+          height: 3rem
+          margin: 0 1rem
+          display: inline-block
+          vertical-align: middle
+        .btnPlayPause
+          width: 4rem
+          height: 4rem
+          margin: 0 1rem
+          display: inline-block
+          vertical-align: middle
+          &.play
+            background: url('../../assests/images/play_pause.png') no-repeat
+            background-size: 100%
+          &.pause
+            background: url('../../assests/images/play_play.png') no-repeat
+            background-size: 100%
+        .btnNext
+          background: url('../../assests/images/play_next.png') no-repeat
+          background-size: 100%
+          width: 3rem
+          height: 3rem
+          margin: 0 1rem
+          display: inline-block
+          vertical-align: middle

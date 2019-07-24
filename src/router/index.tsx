@@ -5,6 +5,7 @@ import Tabbar from 'components/tabbar/Tabbar'
 import Player from 'components/player/Player'
 import NewSong from 'pages/newSong/NewSong'
 import SongInfo from 'pages/songInfo/SongInfo'
+import Audio from 'components/audio/Audio'
 
 export default class RouteConfig extends React.Component {
   public render() {
@@ -18,6 +19,7 @@ export default class RouteConfig extends React.Component {
           <Route path="/songinfo" component={SongInfo} />
         </Switch>
         <Route path="/" component={Player} />
+        <Route path="/" component={Audio} />
       </HashRouter>
     )
   }

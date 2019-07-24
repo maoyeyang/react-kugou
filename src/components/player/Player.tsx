@@ -13,7 +13,6 @@ class Player extends React.PureComponent<any, any> {
         <div
           className={styles.player + ' ' + (showStatus ? styles.hidden : '')}
         >
-          <audio src={player.playInfo.url} autoPlay={true} ref="audio" />
           <div
             className={styles.left}
             onClick={() => {
@@ -32,10 +31,12 @@ class Player extends React.PureComponent<any, any> {
           <div className={styles.right}>
             <i
               className={
-                styles.icon + ' ' + (player.isPlay ? styles.play : styles.pause)
+                styles.icon +
+                ' ' +
+                (player.lyric.state ? styles.play : styles.pause)
               }
               onClick={() => {
-                this.playPause()
+                this.playPause(player.lyric)
               }}
             />
             <i className={styles.iconNext} />
@@ -48,14 +49,9 @@ class Player extends React.PureComponent<any, any> {
   public goSongInfo = () => {
     this.props.history.push('/songinfo')
   }
-  public playPause = () => {
-    const audio = this.refs.audio as any
-    if (audio.paused) {
-      audio.play()
-      this.props.playPause()
-    } else {
-      audio.pause()
-      this.props.playPause()
+  public playPause = (lyric: any) => {
+    if (this.props.player.toJS().playInfo) {
+      this.props.playPause(lyric)
     }
   }
 }
@@ -67,7 +63,7 @@ const mapState = (state: any) => {
 }
 const mapDispath = (dispatch: Dispatch) => {
   return {
-    playPause: () => dispatch(actions.playPause())
+    playPause: (lyric: any) => dispatch(actions.playPause(lyric))
   }
 }
 
