@@ -16,13 +16,11 @@ export const playSong = createAction<any, any>(
   constants.GLOBAL_PLAY_SONG,
   data => data
 )
-export const playPause = createAction<any, any>(
-  constants.GLOBAL_PLAY_PAUSE,
-  (lyric: any) => lyric
-)
-export const changeCurNum = createAction(
-  constants.GLOBAL_CHANGE_CURNUM,
-  () => {}
+export const playPause = createAction(constants.GLOBAL_PLAY_PAUSE, () => {})
+
+export const setCurrentTime = createAction<any, any>(
+  constants.GLOBAL_SET_CURRENTTIME,
+  (setData: { currentTime: number; curNum: number }) => setData
 )
 export const playByIndex = createAction<any, any>(
   constants.GLOBAL_PLAY_BY_INDEX,
@@ -77,7 +75,6 @@ const getSongDataAndLyric = async (hash: string) => {
     }
   })
   const lyric = Lyric.initLyric(lyricString.data)
-  lyric.startStamp = +new Date()
   return {
     playInfo: playInfo.data,
     lyric

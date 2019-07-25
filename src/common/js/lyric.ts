@@ -25,39 +25,15 @@ export const initLyric = (lyr: string) => {
   res = {
     lines: linesArr,
     state: true,
-    curNum: 0,
-    startStamp: null,
-    playTime: 0
+    currentTime: 0,
+    curNum: 0
   }
   return res
 }
-
-export const play = (lyric: any) => {
-  return {
-    ...lyric,
-    startStamp: +new Date()
-  }
-}
-export const stop = (lyric: any) => {
-  let playTime = lyric.playTime + +new Date() - lyric.startStamp
-  return {
-    ...lyric,
-    playTime
-  }
-}
-export const show = (lyric: any) => {
-  if (lyric.state) {
-    const time = +new Date() - lyric.startStamp + lyric.playTime
-    for (let i = 0; i < lyric.lines.length; i++) {
-      if (time <= lyric.lines[i].time) {
-        return i - 1
-      }
-    }
-  } else {
-    for (let i = 0; i < lyric.lines.length; i++) {
-      if (lyric.playTime <= lyric.lines[i].time) {
-        return i - 1
-      }
+export const show = (currentTime: number, lyric: any) => {
+  for (let i = 0; i < lyric.lines.length; i++) {
+    if (currentTime * 1000 <= lyric.lines[i].time) {
+      return i - 1
     }
   }
   return lyric.lines.length - 1

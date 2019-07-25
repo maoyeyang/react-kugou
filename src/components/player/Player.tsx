@@ -36,7 +36,7 @@ class Player extends React.PureComponent<any, any> {
                 (player.lyric.state ? styles.play : styles.pause)
               }
               onClick={() => {
-                this.playPause(player.lyric)
+                this.playPause()
               }}
             />
             <i
@@ -58,9 +58,9 @@ class Player extends React.PureComponent<any, any> {
   public goSongInfo = () => {
     this.props.history.push('/songinfo')
   }
-  public playPause = (lyric: any) => {
+  public playPause = () => {
     if (this.props.player.toJS().playInfo) {
-      this.props.playPause(lyric)
+      this.props.playPause()
     }
   }
 }
@@ -72,7 +72,7 @@ const mapState = (state: any) => {
 }
 const mapDispath = (dispatch: Dispatch) => {
   return {
-    playPause: (lyric: any) => dispatch(actions.playPause(lyric)),
+    playPause: () => dispatch(actions.playPause()),
     playSong: (payload: any) => actions.getPlaySongData(payload)(dispatch)
   }
 }

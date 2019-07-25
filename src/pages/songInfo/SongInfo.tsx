@@ -4,37 +4,36 @@ import { connect } from 'react-redux'
 import * as actions from 'store/actions'
 import styles from './songInfo.module.styl'
 import GoBack from 'components/goBack/GoBack'
-import * as Lyric from 'common/js/lyric'
 import BScroll from 'better-scroll'
+import { getSongTime } from 'common/js/time'
 
 type songInfoModel = {
   player: any
   playPause: Function
-  changeCurNum: Function
   playSong: Function
 }
 
 interface scrollState {
   click: boolean
   probeType: number
+  width: string
 }
 
 class SongInfo extends React.PureComponent<songInfoModel, scrollState> {
   wrapper: any
   wrapperBs: any
-  timer: any
-  player: any
   heightList: [number]
+  isMove: boolean
   constructor(props: songInfoModel) {
     super(props)
     this.wrapper = React.createRef()
     this.wrapperBs = null
-    this.timer = null
-    this.player = null
     this.heightList = [0]
+    this.isMove = true
     this.state = {
       click: true,
-      probeType: 1
+      probeType: 1,
+      width: '0%'
     }
   }
   public render() {
@@ -45,6 +44,11 @@ class SongInfo extends React.PureComponent<songInfoModel, scrollState> {
         backgroundImage: `url(${player.playInfo.imgUrl &&
           player.playInfo.imgUrl.replace('{size}', 200)})`
       }
+    }
+    const allTime = getSongTime(player.playInfo.timeLength)
+    const nowTime = getSongTime(parseInt(player.lyric.currentTime))
+    let styleSpan = {
+      width: this.state.width
     }
     return (
       <div className={styles.songInfo}>
@@ -70,19 +74,31 @@ class SongInfo extends React.PureComponent<songInfoModel, scrollState> {
             </div>
           </div>
           <div className={styles.bottom}>
-            <div className={styles.timeWrap}>
-              <div className={styles.timeshow}>{'03:51'}</div>
-              <div className={styles.progressWrap}>
-                <div className={styles.progress}>
+            <div
+              className={styles.timeWrap}
+              onTouchStart={e => {
+                this.onProgressStart(e)
+              }}
+              onTouchMove={e => {
+                this.onProgressMove(e)
+              }}
+              onTouchEnd={e => {
+                this.onProgressEnd(e)
+              }}
+            >
+              <div className={styles.timeshow}>{nowTime}</div>
+              <div className={styles.progressWrap} ref="progress">
+                <div className={styles.progress} style={styleSpan}>
                   <span />
                 </div>
               </div>
-              <div className={styles.time}>{'adad'}</div>
+              <div className={styles.time}>{allTime}</div>
             </div>
             <div className={styles.playOperate}>
               <i
                 className={styles.btnPrev}
                 onClick={() => {
+                  if (!player.playInfo.hash) return
                   this.props.playSong({
                     hash: player.playInfo.hash,
                     type: 'prev',
@@ -97,12 +113,13 @@ class SongInfo extends React.PureComponent<songInfoModel, scrollState> {
                   (player.lyric.state ? styles.play : styles.pause)
                 }
                 onClick={() => {
-                  this.playPause(player.lyric)
+                  this.playPause()
                 }}
               />
               <i
                 className={styles.btnNext}
                 onClick={() => {
+                  if (!player.playInfo.hash) return
                   this.props.playSong({
                     hash: player.playInfo.hash,
                     type: 'next',
@@ -138,38 +155,93 @@ class SongInfo extends React.PureComponent<songInfoModel, scrollState> {
     if (!this.wrapper.current) return
     let h = this.wrapper.current.clientHeight / 2
     let w = this.wrapper.current.clientWidth / 2
-    this.wrapperBs &&
-      this.wrapperBs.scrollTo(0, -this.heightList[index] - w + h - 20, 1000)
+    if (this.wrapperBs) {
+      this.wrapperBs.stop()
+      this.wrapperBs.scrollTo(0, -this.heightList[index] - w + h - 40, 1000)
+    }
   }
-  public componentWillUnmount() {
-    this.timer && clearInterval(this.timer)
+  _touch(e: any) {
+    this.isMove = false
+    const progress = this.refs.progress as HTMLElement
+    const left = progress.offsetLeft
+    const width = progress.offsetWidth
+    const x = e.changedTouches[0].clientX
+    let percentage = (x - left) / width
+    if (left + width < x) {
+      percentage = 1
+    }
+    if (x < left) {
+      percentage = 0
+    }
+    return percentage
   }
-  public componentWillUpdate(a: any) {
-    if (this.player.playInfo.songName !== a.player.toJS().playInfo.songName) {
+  onProgressStart(e: any) {
+    const percentage = this._touch(e) * 100 + '%'
+    this.setState({
+      width: percentage
+    })
+  }
+  onProgressMove(e: any) {
+    const percentage = this._touch(e) * 100 + '%'
+    this.setState({
+      width: percentage
+    })
+  }
+  onProgressEnd(e: any) {
+    const percentage = this._touch(e)
+    if (!this.props.player.toJS().playInfo.hash) {
+      this.isMove = true
+      return
+    }
+    const time = percentage * this.props.player.toJS().playInfo.timeLength
+    const audio = document.getElementsByTagName('audio')[0] as any
+    audio.currentTime = time
+    this.setState(
+      {
+        width: percentage * 100 + '%'
+      },
+      () => {
+        this.isMove = true
+      }
+    )
+  }
+  public componentWillUpdate(nextProps: any) {
+    if (
+      this.props.player.toJS().playInfo.hash !==
+      nextProps.player.toJS().playInfo.hash
+    ) {
       this.wrapperBs.refresh()
       this._initHeightList()
+    }
+    if (
+      this.props.player.toJS().lyric.curNum !==
+      nextProps.player.toJS().lyric.curNum
+    ) {
+      this._scrollTo(nextProps.player.toJS().lyric.curNum)
+    }
+    const player = this.props.player.toJS()
+    if (this.isMove) {
+      this.setState({
+        width:
+          (player.lyric.currentTime / player.playInfo.timeLength) * 100 + '%'
+      })
     }
     return true
   }
   public componentDidMount() {
-    this.player = this.props.player.toJS()
+    const player = this.props.player.toJS()
+    this.setState({
+      width: (player.lyric.currentTime / player.playInfo.timeLength) * 100 + '%'
+    })
     setTimeout(() => {
       this._initScroll()
       this._initHeightList()
-      this._scrollTo(this.player.lyric.curNum)
+      this._scrollTo(player.lyric.curNum)
     }, 20)
-    this.timer = setInterval(() => {
-      let nowNum = Lyric.show(this.player.lyric)
-      let num = this.player.lyric.curNum
-      if (nowNum !== num) {
-        this.props.changeCurNum()
-        this._scrollTo(nowNum)
-      }
-    }, 300)
   }
-  playPause = (lyric: any) => {
-    if (this.player.playInfo) {
-      this.props.playPause(lyric)
+  playPause = () => {
+    if (this.props.player.toJS().playInfo) {
+      this.props.playPause()
     }
   }
 }
@@ -180,8 +252,7 @@ const mapState = (state: any) => {
 }
 const mapDispath = (dispatch: Dispatch) => {
   return {
-    playPause: (lyric: any) => dispatch(actions.playPause(lyric)),
-    changeCurNum: () => dispatch(actions.changeCurNum()),
+    playPause: () => dispatch(actions.playPause()),
     playSong: (payload: any) => actions.getPlaySongData(payload)(dispatch)
   }
 }
