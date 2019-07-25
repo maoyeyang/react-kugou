@@ -39,7 +39,16 @@ class Player extends React.PureComponent<any, any> {
                 this.playPause(player.lyric)
               }}
             />
-            <i className={styles.iconNext} />
+            <i
+              className={styles.iconNext}
+              onClick={() => {
+                this.props.playSong({
+                  hash: player.playInfo.hash,
+                  type: 'next',
+                  data: player.playerList
+                })
+              }}
+            />
             <i className={styles.iconDownLoad} />
           </div>
         </div>
@@ -63,7 +72,8 @@ const mapState = (state: any) => {
 }
 const mapDispath = (dispatch: Dispatch) => {
   return {
-    playPause: (lyric: any) => dispatch(actions.playPause(lyric))
+    playPause: (lyric: any) => dispatch(actions.playPause(lyric)),
+    playSong: (payload: any) => actions.getPlaySongData(payload)(dispatch)
   }
 }
 

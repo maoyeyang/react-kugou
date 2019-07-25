@@ -19,7 +19,7 @@ class SongList extends React.PureComponent<SongListModel> {
               key={item.hash}
               className={styles.listItem}
               onClick={() => {
-                this.props.playSong({ item, data })
+                this.props.playSong({ hash: item.hash, type: 'play', data })
               }}
             >
               <div className={styles.itemName}>{item.filename}</div>

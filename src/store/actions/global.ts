@@ -16,36 +16,70 @@ export const playSong = createAction<any, any>(
   constants.GLOBAL_PLAY_SONG,
   data => data
 )
-export const changeLyric = createAction<any, any>(
-  constants.GLOBAL_CHANGE_LYRIC,
-  data => data
-)
 export const playPause = createAction<any, any>(
   constants.GLOBAL_PLAY_PAUSE,
   (lyric: any) => lyric
 )
+export const changeCurNum = createAction(
+  constants.GLOBAL_CHANGE_CURNUM,
+  () => {}
+)
+export const playByIndex = createAction<any, any>(
+  constants.GLOBAL_PLAY_BY_INDEX,
+  (index: number) => ({
+    index
+  })
+)
 
 export const getPlaySongData = (playSongData: any) => {
   return async (dispatch: Dispatch) => {
-    let songInfoUrl = `/api/api/v1/song/get_song_info?cmd=playInfo&hash=${
-      playSongData.item.hash
-    }`
-    let data1 = await axios.get(songInfoUrl)
-    let songLyricUrl = `/api/app/i/krc.php?cmd=100&hash=${
-      playSongData.item.hash
-    }&timelength=${data1.data.timeLength * 100}`
-    let data2 = await axios.get(songLyricUrl)
-    const lyric = Lyric.initLyric(data2.data)
-    lyric.startStamp = +new Date()
+    let data: any
+    if (playSongData.type === 'play') {
+      data = await getSongDataAndLyric(playSongData.hash)
+    } else {
+      let index = playSongData.data.findIndex(
+        (item: any) => item.hash === playSongData.hash
+      )
+      if (playSongData.type === 'next') {
+        index === playSongData.data.length - 1 ? (index = 0) : index++
+        data = await getSongDataAndLyric(playSongData.data[index].hash)
+      }
+      if (playSongData.type === 'prev') {
+        index === 0 ? (index = playSongData.data.length - 1) : index--
+        data = await getSongDataAndLyric(playSongData.data[index].hash)
+      }
+    }
+
     dispatch(
       playSong(
         immutable.fromJS({
-          playInfo: data1.data,
+          playInfo: data.playInfo,
           playerList: playSongData.data,
-          lyric
+          lyric: data.lyric
         })
       )
     )
-    return
+  }
+}
+
+const getSongDataAndLyric = async (hash: string) => {
+  let playInfo = await axios.get('/api/api/v1/song/get_song_info', {
+    params: {
+      cmd: 'playInfo',
+      hash
+    }
+  })
+  let lyricString = await axios.get('/api/app/i/krc.php', {
+    params: {
+      timelength: playInfo.data.timeLength * 100,
+      hash,
+      cmd: 100
+    }
+  })
+  const lyric = Lyric.initLyric(lyricString.data)
+  lyric.startStamp = +new Date()
+  return {
+    playInfo: playInfo.data,
+    lyric
   }
 }

@@ -47,5 +47,19 @@ export const stop = (lyric: any) => {
   }
 }
 export const show = (lyric: any) => {
-  return lyric
+  if (lyric.state) {
+    const time = +new Date() - lyric.startStamp + lyric.playTime
+    for (let i = 0; i < lyric.lines.length; i++) {
+      if (time <= lyric.lines[i].time) {
+        return i - 1
+      }
+    }
+  } else {
+    for (let i = 0; i < lyric.lines.length; i++) {
+      if (lyric.playTime <= lyric.lines[i].time) {
+        return i - 1
+      }
+    }
+  }
+  return lyric.lines.length - 1
 }
