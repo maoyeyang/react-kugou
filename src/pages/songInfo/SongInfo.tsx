@@ -23,12 +23,14 @@ class SongInfo extends React.PureComponent<songInfoModel, scrollState> {
   wrapper: any
   wrapperBs: any
   timer: any
+  player: any
   heightList: [number]
   constructor(props: songInfoModel) {
     super(props)
     this.wrapper = React.createRef()
     this.wrapperBs = null
     this.timer = null
+    this.player = null
     this.heightList = [0]
     this.state = {
       click: true,
@@ -75,7 +77,7 @@ class SongInfo extends React.PureComponent<songInfoModel, scrollState> {
                   <span />
                 </div>
               </div>
-              <div className={styles.time}>{'05:32'}</div>
+              <div className={styles.time}>{'adad'}</div>
             </div>
             <div className={styles.playOperate}>
               <i
@@ -132,38 +134,41 @@ class SongInfo extends React.PureComponent<songInfoModel, scrollState> {
       )
     }
   }
+  _scrollTo(index: number) {
+    if (!this.wrapper.current) return
+    let h = this.wrapper.current.clientHeight / 2
+    let w = this.wrapper.current.clientWidth / 2
+    this.wrapperBs &&
+      this.wrapperBs.scrollTo(0, -this.heightList[index] - w + h - 20, 1000)
+  }
   public componentWillUnmount() {
     this.timer && clearInterval(this.timer)
   }
   public componentWillUpdate(a: any) {
-    if (
-      this.props.player.toJS().playInfo.songName !==
-      a.player.toJS().playInfo.songName
-    ) {
+    if (this.player.playInfo.songName !== a.player.toJS().playInfo.songName) {
       this.wrapperBs.refresh()
       this._initHeightList()
     }
     return true
   }
   public componentDidMount() {
-    let h = this.wrapper.current.clientHeight / 2
-    let w = this.wrapper.current.clientWidth / 2
+    this.player = this.props.player.toJS()
     setTimeout(() => {
       this._initScroll()
       this._initHeightList()
+      this._scrollTo(this.player.lyric.curNum)
     }, 20)
     this.timer = setInterval(() => {
-      let nowNum = Lyric.show(this.props.player.toJS().lyric)
-      let num = this.props.player.toJS().lyric.curNum
+      let nowNum = Lyric.show(this.player.lyric)
+      let num = this.player.lyric.curNum
       if (nowNum !== num) {
         this.props.changeCurNum()
-        this.wrapperBs &&
-          this.wrapperBs.scrollTo(0, -this.heightList[nowNum] - w + h, 1000)
+        this._scrollTo(nowNum)
       }
     }, 300)
   }
-  public playPause = (lyric: any) => {
-    if (this.props.player.toJS().playInfo) {
+  playPause = (lyric: any) => {
+    if (this.player.playInfo) {
       this.props.playPause(lyric)
     }
   }

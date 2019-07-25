@@ -25,7 +25,6 @@ export const initLyric = (lyr: string) => {
   res = {
     lines: linesArr,
     state: true,
-    curLine: 0,
     curNum: 0,
     startStamp: null,
     playTime: 0
