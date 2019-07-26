@@ -15,6 +15,9 @@ export interface IGlobalModel {
   rankInfo: {
     [propName: string]: any
   }
+  pListInfo: {
+    [propName: string]: any
+  }
 }
 
 export interface INewSongModel {

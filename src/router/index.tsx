@@ -8,6 +8,7 @@ import Rank from 'pages/rank/Rank'
 import PList from 'pages/pList/PList'
 import SongInfo from 'pages/songInfo/SongInfo'
 import RankInfo from 'pages/rankInfo/RankInfo'
+import PListInfo from 'pages/pListInfo/PListInfo'
 import Audio from 'components/audio/Audio'
 
 export default class RouteConfig extends React.Component {
@@ -23,6 +24,11 @@ export default class RouteConfig extends React.Component {
           <Route path="/home/plist" exact={true} component={PList} />
           <Route path="/songinfo" exact={true} component={SongInfo} />
           <Route path="/rank/info/:rankid" exact={true} component={RankInfo} />
+          <Route
+            path="/plist/info/:specialid"
+            exact={true}
+            component={PListInfo}
+          />
         </Switch>
         <Route path="/" component={Player} />
         <Route path="/" component={Audio} />

@@ -34,6 +34,15 @@ const globalReducer = handleActions<IGlobalModel>(
           songs: action.payload.songs
         })
       )
+    },
+    [constants.GLOBAL_CHANGE_PLISTINFO_DATA]: (state: any, action: any) => {
+      return state.setIn(
+        ['pListInfo'],
+        immutable.fromJS({
+          info: action.payload.info.list,
+          list: action.payload.list.list.info
+        })
+      )
     }
   },
   defaultGlobalState

@@ -69,3 +69,13 @@ export const API_getPList = () => {
     }
   })
 }
+/*
+ * 获取 歌单下的音乐列表
+ */
+export const API_getPListInfo = (specialid: number) => {
+  return axios.get(URL.GET_PLIST_INFO_URL + specialid, {
+    params: {
+      json: true
+    }
+  })
+}

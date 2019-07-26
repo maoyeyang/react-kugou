@@ -9,7 +9,8 @@ export const defaultGlobalState: IGlobalModel = immutable.fromJS({
     playInfo: {},
     lyric: Lyric.initLyric('')
   },
-  rankInfo: {}
+  rankInfo: {},
+  pListInfo: {}
 })
 export const defaultNewSongState: INewSongModel = immutable.fromJS({})
 
