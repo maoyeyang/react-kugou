@@ -23,7 +23,7 @@ class RankInfo extends React.PureComponent<RankInfoProps, {}> {
       <div
         className={styles.rankInfo + ' ' + (this.props.play ? styles.play : '')}
       >
-        <GoBack text={data.info.rankname || '暂无数据'} />
+        <GoBack styleType={false} text={data.info.rankname || '暂无数据'} />
         <Scroll scrollStyle={styles.scrollStyle}>
           <div>
             <div className={styles.top}>

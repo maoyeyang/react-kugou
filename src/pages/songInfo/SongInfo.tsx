@@ -54,7 +54,10 @@ class SongInfo extends React.PureComponent<songInfoProps, songInfoState> {
       <div className={styles.songInfo}>
         <div className={styles.filter} style={style} />
         <div className={styles.bgc} />
-        <GoBack text={player.playInfo.songName || '暂无播放歌曲'} />
+        <GoBack
+          styleType={false}
+          text={player.playInfo.songName || '暂无播放歌曲'}
+        />
         <div className={styles.content}>
           <div className={styles.lyric} ref={this.wrapper}>
             <div className={styles.all}>

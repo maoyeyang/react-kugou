@@ -1,8 +1,8 @@
-import { IGlobalModel, INewSongModel } from 'model'
+import * as Model from 'model'
 import immutable from 'immutable'
 import * as Lyric from 'common/js/lyric'
 
-export const defaultGlobalState: IGlobalModel = immutable.fromJS({
+export const defaultGlobalState: Model.IGlobalModel = immutable.fromJS({
   tabbarItem: 0,
   player: {
     playerList: [],
@@ -12,12 +12,17 @@ export const defaultGlobalState: IGlobalModel = immutable.fromJS({
   rankInfo: {},
   pListInfo: {}
 })
-export const defaultNewSongState: INewSongModel = immutable.fromJS({})
+export const defaultNewSongState: Model.INewSongModel = immutable.fromJS({})
 
-export const defaultRankState: INewSongModel = immutable.fromJS([])
+export const defaultRankState: Model.IRankModel = immutable.fromJS([])
 
-export const defaultPListState: INewSongModel = immutable.fromJS([])
+export const defaultPListState: Model.IPListModel = immutable.fromJS([])
 
-export const defaultSingerState: INewSongModel = immutable.fromJS({
-  singerClass: []
+export const defaultSingerState: Model.ISingerModel = immutable.fromJS({
+  singerClass: [],
+  singerList: {
+    classid: 0,
+    classname: '',
+    list: []
+  }
 })

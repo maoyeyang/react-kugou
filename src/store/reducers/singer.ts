@@ -13,11 +13,11 @@ const SingerReducer = handleActions<ISingerModel>(
       return state.setIn(['singerClass'], immutable.fromJS(action.payload.list))
     },
     [SINGER_CHANGE_LISR_DATA]: (state: any, action: any) => {
-      console.log(action)
       return state.setIn(
         ['singerList'],
         immutable.fromJS({
           classname: action.payload.classname,
+          classid: action.payload.classid,
           list: action.payload.singers.list.info
         })
       )

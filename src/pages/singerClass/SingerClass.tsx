@@ -20,7 +20,6 @@ class Rank extends React.PureComponent<RankProps, {}> {
     let numPrev = -1
     singerClass.forEach((item: any) => {
       let num = Math.ceil(item.classid / 3)
-      console.log(item, num)
       if (num !== numPrev) {
         index++
         singerArr[index] = new Array(item)
