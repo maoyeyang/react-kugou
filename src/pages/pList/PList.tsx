@@ -2,7 +2,7 @@ import * as React from 'react'
 import { Dispatch } from 'redux'
 import { connect } from 'react-redux'
 import Scroll from 'common/components/scroll/Scroll'
-import RankList from 'components/rankList/RankList'
+import PListList from 'components/pListList/PListList'
 import * as actions from 'store/actions'
 import styles from './pList.module.styl'
 
@@ -14,13 +14,14 @@ interface PListProps {
 
 class PList extends React.PureComponent<PListProps, {}> {
   public render() {
-    console.log(this.props.pList.toJS())
     return (
       <div
         className={styles.pList + ' ' + (this.props.play ? styles.play : '')}
       >
         <Scroll scrollStyle={styles.scrollStyle}>
-          <div>aaa</div>
+          <div>
+            <PListList />
+          </div>
         </Scroll>
       </div>
     )
