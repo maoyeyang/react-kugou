@@ -16,9 +16,10 @@ export default class RouteConfig extends React.Component {
         <Route path="/home" component={Header} />
         <Route path="/home" component={Tabbar} />
         <Switch>
-          <Route path="/home/newsong" component={NewSong} />
-          <Route path="/home/ranklist" component={Rank} />
-          <Route path="/songinfo" component={SongInfo} />
+          <Route path="/home/newsong" exact={true} component={NewSong} />
+          <Route path="/home/ranklist" exact={true} component={Rank} />
+          <Route path="/songinfo" exact={true} component={SongInfo} />
+          <Route path="/rank/info/:rankid" exact={true} component={SongInfo} />
         </Switch>
         <Route path="/" component={Player} />
         <Route path="/" component={Audio} />

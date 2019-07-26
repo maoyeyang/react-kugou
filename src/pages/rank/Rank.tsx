@@ -8,13 +8,16 @@ import styles from './rank.module.styl'
 
 type RankProps = {
   rank: any
+  play: boolean
   getRankData: Function
 }
 
 class Rank extends React.PureComponent<RankProps, {}> {
   public render() {
     return (
-      <div className={styles.rankList + ' ' + (false ? styles.play : '')}>
+      <div
+        className={styles.rankList + ' ' + (this.props.play ? styles.play : '')}
+      >
         <Scroll scrollStyle={styles.scrollStyle}>
           <div>
             <RankList />

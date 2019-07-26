@@ -22,9 +22,12 @@ class RankList extends React.PureComponent<RankListProps> {
               key={item.rankid}
               className={styles.listItem}
             >
-              <img src={item.imgurl.replace('{size}', 400)} />
-              <div />
-              <i />
+              <img
+                src={item.imgurl.replace('{size}', 400)}
+                className={styles.img}
+              />
+              <div className={styles.text}>{item.rankname}</div>
+              <i className={styles.icon} />
             </Link>
           ))}
       </div>
