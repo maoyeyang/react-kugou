@@ -4,17 +4,19 @@ import { connect } from 'react-redux'
 import * as actions from 'store/actions'
 import styles from './songList.module.styl'
 
-type SongListModel = {
-  [propName: string]: any
+interface SongListProps {
+  data: any
+  playSong: Function
+  styleType: number
 }
 
-class SongList extends React.PureComponent<SongListModel> {
+class SongList extends React.PureComponent<SongListProps> {
   public render() {
     const songList = this.props.data || []
     return (
       <div className={styles.list}>
         {!!songList.length &&
-          songList.map((item: any) => (
+          songList.map((item: any, index: number) => (
             <div
               key={item.hash}
               className={styles.listItem}
@@ -26,6 +28,11 @@ class SongList extends React.PureComponent<SongListModel> {
                 })
               }}
             >
+              {this.props.styleType === 2 && (
+                <div className={styles.rank}>
+                  <span className={styles.number}>{index + 1}</span>
+                </div>
+              )}
               <div className={styles.itemName}>{item.filename}</div>
               <div
                 className={styles.downLoad}
@@ -43,10 +50,6 @@ class SongList extends React.PureComponent<SongListModel> {
   }
 }
 
-const mapState = (state: any) => ({
-  data:
-    state.getIn(['newSong', 'data']) && state.getIn(['newSong', 'data']).toJS()
-})
 const mapDispath = (dispatch: Dispatch) => {
   return {
     playSong: (payload: any) => actions.getPlaySongData(payload)(dispatch)
@@ -54,6 +57,6 @@ const mapDispath = (dispatch: Dispatch) => {
 }
 
 export default connect(
-  mapState,
+  null,
   mapDispath
 )(SongList)

@@ -22,7 +22,7 @@ class NewSong extends React.PureComponent<NewSongModel, {}> {
         <Scroll scrollStyle={styles.scrollStyle}>
           <div>
             <SliderImg />
-            <SongList />
+            <SongList styleType={1} data={this.props.newSong.toJS().data} />
           </div>
         </Scroll>
       </div>
