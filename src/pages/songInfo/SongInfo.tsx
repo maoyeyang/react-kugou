@@ -7,24 +7,24 @@ import GoBack from 'components/goBack/GoBack'
 import BScroll from 'better-scroll'
 import { getSongTime } from 'common/js/time'
 
-type songInfoModel = {
+interface songInfoProps {
   player: any
   playPause: Function
   playSong: Function
 }
 
-interface scrollState {
+interface songInfoState {
   click: boolean
   probeType: number
   width: string
 }
 
-class SongInfo extends React.PureComponent<songInfoModel, scrollState> {
+class SongInfo extends React.PureComponent<songInfoProps, songInfoState> {
   wrapper: any
   wrapperBs: any
   heightList: [number]
   isMove: boolean
-  constructor(props: songInfoModel) {
+  constructor(props: songInfoProps) {
     super(props)
     this.wrapper = React.createRef()
     this.wrapperBs = null

@@ -26,7 +26,7 @@ class Tabbar extends React.PureComponent<TabbarModel> {
           新歌
         </Link>
         <Link
-          to="/home/rank"
+          to="/home/ranklist"
           className={styles.tabbarItem}
           onClick={() => {
             this.handleChangeRoute(1)

@@ -10,16 +10,16 @@ type SongListModel = {
 
 class SongList extends React.PureComponent<SongListModel> {
   public render() {
-    const data = this.props.data || []
+    const songList = this.props.songList || []
     return (
       <div className={styles.list}>
-        {!!data.length &&
-          data.map((item: any) => (
+        {!!songList.length &&
+          songList.map((item: any) => (
             <div
               key={item.hash}
               className={styles.listItem}
               onClick={() => {
-                this.props.playSong({ hash: item.hash, type: 'play', data })
+                this.props.playSong({ hash: item.hash, type: 'play', songList })
               }}
             >
               <div className={styles.itemName}>{item.filename}</div>
@@ -40,7 +40,7 @@ class SongList extends React.PureComponent<SongListModel> {
 }
 
 const mapState = (state: any) => ({
-  data:
+  songList:
     state.getIn(['newSong', 'data']) && state.getIn(['newSong', 'data']).toJS()
 })
 const mapDispath = (dispatch: Dispatch) => {

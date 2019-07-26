@@ -1,3 +1,3 @@
 export * from './global'
 export * from './newSong'
-// export * from './player'
+export * from './rank'

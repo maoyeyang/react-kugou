@@ -17,3 +17,7 @@ export interface IGlobalModel {
 export interface INewSongModel {
   [propName: string]: any
 }
+
+export interface IRankModel {
+  [propName: string]: any
+}

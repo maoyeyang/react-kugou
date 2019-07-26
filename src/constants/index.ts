@@ -6,3 +6,5 @@ export const GLOBAL_PLAY_BY_INDEX: string = 'GLOBAL_PLAY_BY_INDEX'
 export const GLOBAL_SET_CURRENTTIME: string = 'GLOBAL_SET_CURRENTTIME'
 
 export const NEWSONG_CHANGE_DATA: string = 'NEWSONG_CHANGE_DATA'
+
+export const RANK_CHANGE_DATA: string = 'RANK_CHANGE_DATA'
