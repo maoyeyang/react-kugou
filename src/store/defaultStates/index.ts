@@ -17,3 +17,7 @@ export const defaultNewSongState: INewSongModel = immutable.fromJS({})
 export const defaultRankState: INewSongModel = immutable.fromJS([])
 
 export const defaultPListState: INewSongModel = immutable.fromJS([])
+
+export const defaultSingerState: INewSongModel = immutable.fromJS({
+  singerClass: []
+})

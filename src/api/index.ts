@@ -79,3 +79,23 @@ export const API_getPListInfo = (specialid: number) => {
     }
   })
 }
+/*
+ * 获取 歌手分类
+ */
+export const API_getSingerClass = () => {
+  return axios.get(URL.GET_SINGER_CLASS_URL, {
+    params: {
+      json: true
+    }
+  })
+}
+/*
+ * 获取 歌手分类下面的歌手列表
+ */
+export const API_getSingerList = (classid: number) => {
+  return axios.get(URL.GET_SINGER_LIST_URL + classid, {
+    params: {
+      json: true
+    }
+  })
+}

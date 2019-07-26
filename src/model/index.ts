@@ -31,3 +31,6 @@ export interface IRankModel {
 export interface IPListModel {
   [propName: string]: any
 }
+export interface ISingerModel {
+  [propName: string]: any
+}

@@ -6,7 +6,7 @@ import RankList from 'components/rankList/RankList'
 import * as actions from 'store/actions'
 import styles from './rank.module.styl'
 
-type RankProps = {
+interface RankProps {
   rank: any
   play: boolean
   getRankData: Function

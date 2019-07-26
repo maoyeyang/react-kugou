@@ -26,7 +26,6 @@ class PListInfo extends React.PureComponent<PListInfoProps, PListInfoState> {
   }
   public render() {
     const data = this.props.data.toJS()
-    console.log(data)
     if (JSON.stringify(data) === '{}') return null
     return (
       <div
