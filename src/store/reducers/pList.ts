@@ -7,7 +7,7 @@ import immutable from 'immutable'
 const RankReducer = handleActions<IPListModel>(
   {
     [PLIST_CHANGE_DATA]: (state: any, action: any) => {
-      return immutable.fromJS(action.payload)
+      return immutable.fromJS(action.payload.plist.list.info)
     }
   },
   defaultPListState

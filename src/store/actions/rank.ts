@@ -14,9 +14,9 @@ export const changeRankData = createAction<IRankModel, IRankModel>(
 
 export const getRankData = (rank: Object) => {
   return async (dispatch: Dispatch) => {
-    if (immutable.is(rank, immutable.fromJS({}))) {
+    if (immutable.is(rank, immutable.fromJS([]))) {
       const res = await API_getRankList()
-      dispatch(changeRankData(immutable.fromJS(res.data)))
+      dispatch(changeRankData(res.data))
       return
     }
   }

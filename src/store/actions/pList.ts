@@ -14,9 +14,9 @@ export const changePListData = createAction<IPListModel, IPListModel>(
 
 export const getPListData = (pList: Object) => {
   return async (dispatch: Dispatch) => {
-    if (immutable.is(pList, immutable.fromJS({}))) {
+    if (immutable.is(pList, immutable.fromJS([]))) {
       const res = await API_getPList()
-      dispatch(changePListData(immutable.fromJS(res.data)))
+      dispatch(changePListData(res.data))
       return
     }
   }

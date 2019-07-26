@@ -11,7 +11,7 @@ class RankList extends React.PureComponent<RankListProps> {
   public render() {
     let rankList: any = []
     if (this.props.rankList) {
-      rankList = this.props.rankList.list
+      rankList = this.props.rankList
     }
     return (
       <div className={styles.list}>
@@ -36,8 +36,7 @@ class RankList extends React.PureComponent<RankListProps> {
 }
 
 const mapState = (state: any) => ({
-  rankList:
-    state.getIn(['rank', 'rank']) && state.getIn(['rank', 'rank']).toJS()
+  rankList: state.getIn(['rank']) && state.getIn(['rank']).toJS()
 })
 
 export default connect(

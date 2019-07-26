@@ -7,7 +7,7 @@ import immutable from 'immutable'
 const RankReducer = handleActions<IRankModel>(
   {
     [RANK_CHANGE_DATA]: (state: any, action: any) => {
-      return immutable.fromJS(action.payload)
+      return immutable.fromJS(action.payload.rank.list)
     }
   },
   defaultRankState
