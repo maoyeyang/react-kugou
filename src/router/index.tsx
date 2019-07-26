@@ -6,6 +6,7 @@ import Player from 'components/player/Player'
 import NewSong from 'pages/newSong/NewSong'
 import Rank from 'src/pages/rank/Rank'
 import SongInfo from 'pages/songInfo/SongInfo'
+import RankInfo from 'pages/rankInfo/RankInfo'
 import Audio from 'components/audio/Audio'
 
 export default class RouteConfig extends React.Component {
@@ -19,7 +20,7 @@ export default class RouteConfig extends React.Component {
           <Route path="/home/newsong" exact={true} component={NewSong} />
           <Route path="/home/ranklist" exact={true} component={Rank} />
           <Route path="/songinfo" exact={true} component={SongInfo} />
-          <Route path="/rank/info/:rankid" exact={true} component={SongInfo} />
+          <Route path="/rank/info/:rankid" exact={true} component={RankInfo} />
         </Switch>
         <Route path="/" component={Player} />
         <Route path="/" component={Audio} />

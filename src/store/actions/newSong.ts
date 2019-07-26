@@ -1,9 +1,9 @@
 import { createAction } from 'redux-actions'
-import axios from 'axios'
 import { Dispatch } from 'redux'
 import { INewSongModel } from 'model'
 import { NEWSONG_CHANGE_DATA } from 'constants/index'
 import immutable from 'immutable'
+import { API_getNewSongData } from 'api'
 
 export const changeNewSongData = createAction<INewSongModel, INewSongModel>(
   NEWSONG_CHANGE_DATA,
@@ -13,11 +13,10 @@ export const changeNewSongData = createAction<INewSongModel, INewSongModel>(
 )
 
 export const getNewSongData = (newSong: Object) => {
-  return (dispatch: Dispatch) => {
+  return async (dispatch: Dispatch) => {
     if (immutable.is(newSong, immutable.fromJS({}))) {
-      axios.get('/api/?json=true').then(res => {
-        dispatch(changeNewSongData(immutable.fromJS(res.data)))
-      })
+      const res = await API_getNewSongData()
+      dispatch(changeNewSongData(immutable.fromJS(res.data)))
       return
     }
   }

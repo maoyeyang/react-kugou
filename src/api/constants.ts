@@ -1,0 +1,5 @@
+export const GET_RANK_INFO_URL = '/api/rank/info/'
+export const GET_NEWSONG_DATA_URL = '/api'
+export const GET_SONG_INFO_URL = '/api/api/v1/song/get_song_info'
+export const GET_SONG_LYRIC_URL = '/api/app/i/krc.php'
+export const GET_RANK_LIST_URL = '/api/rank/list'

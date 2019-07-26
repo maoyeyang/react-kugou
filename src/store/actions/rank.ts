@@ -1,9 +1,9 @@
 import { createAction } from 'redux-actions'
-import axios from 'axios'
 import { Dispatch } from 'redux'
 import { IRankModel } from 'model'
 import { RANK_CHANGE_DATA } from 'constants/index'
 import immutable from 'immutable'
+import { API_getRankList } from 'api'
 
 export const changeRankData = createAction<IRankModel, IRankModel>(
   RANK_CHANGE_DATA,
@@ -13,11 +13,10 @@ export const changeRankData = createAction<IRankModel, IRankModel>(
 )
 
 export const getRankData = (rank: Object) => {
-  return (dispatch: Dispatch) => {
+  return async (dispatch: Dispatch) => {
     if (immutable.is(rank, immutable.fromJS({}))) {
-      axios.get('/api/rank/list&json=true').then(res => {
-        dispatch(changeRankData(immutable.fromJS(res.data)))
-      })
+      const res = await API_getRankList()
+      dispatch(changeRankData(immutable.fromJS(res.data)))
       return
     }
   }

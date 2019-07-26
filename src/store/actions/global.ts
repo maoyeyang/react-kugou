@@ -2,8 +2,8 @@ import { createAction } from 'redux-actions'
 import { Dispatch } from 'redux'
 import * as constants from 'constants/index'
 import immutable from 'immutable'
-import axios from 'axios'
 import * as Lyric from 'common/js/lyric'
+import { API_getSongInfo, API_getSongLyric } from 'api'
 
 export const changeTabbarItem = createAction<{ tabbarItem: number }, number>(
   constants.GLOBAL_CHANGE_TABBAR_ITEM,
@@ -61,19 +61,8 @@ export const getPlaySongData = (playSongData: any) => {
 }
 
 const getSongDataAndLyric = async (hash: string) => {
-  let playInfo = await axios.get('/api/api/v1/song/get_song_info', {
-    params: {
-      cmd: 'playInfo',
-      hash
-    }
-  })
-  let lyricString = await axios.get('/api/app/i/krc.php', {
-    params: {
-      timelength: playInfo.data.timeLength * 100,
-      hash,
-      cmd: 100
-    }
-  })
+  let playInfo = await API_getSongInfo(hash)
+  let lyricString = await API_getSongLyric(hash, playInfo.data.timeLength)
   const lyric = Lyric.initLyric(lyricString.data)
   return {
     playInfo: playInfo.data,
