@@ -13,6 +13,7 @@ interface SongListProps {
 class SongList extends React.PureComponent<SongListProps> {
   public render() {
     const songList = this.props.data || []
+    const styleType = this.props.styleType
     return (
       <div className={styles.list}>
         {!!songList.length &&
@@ -28,9 +29,23 @@ class SongList extends React.PureComponent<SongListProps> {
                 })
               }}
             >
-              {this.props.styleType === 2 && (
+              {styleType === 2 && (
                 <div className={styles.rank}>
-                  <span className={styles.number}>{index + 1}</span>
+                  <span
+                    className={
+                      styles.number +
+                      ' ' +
+                      (index === 0
+                        ? styles.red
+                        : index === 1
+                        ? styles.orange
+                        : index === 2
+                        ? styles.yellow
+                        : '')
+                    }
+                  >
+                    {index + 1}
+                  </span>
                 </div>
               )}
               <div className={styles.itemName}>{item.filename}</div>

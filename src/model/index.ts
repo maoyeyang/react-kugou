@@ -12,6 +12,9 @@ export interface IGlobalModel {
     playInfo: object
     lyric: any
   }
+  rankInfo: {
+    [propName: string]: any
+  }
 }
 
 export interface INewSongModel {
@@ -19,5 +22,9 @@ export interface INewSongModel {
 }
 
 export interface IRankModel {
+  [propName: string]: any
+}
+
+export interface IPListModel {
   [propName: string]: any
 }

@@ -6,17 +6,25 @@
     border-bottom: 1px solid #e5e5e5
     position: relative
     display: table
-    padding-left: 1rem
+    padding-left: 0.5rem
     .rank
       width: 1.7rem
       text-align: center
       line-height: 3.5rem
       .number
-        background-color: #e80000
         border-radius: 1rem
-        font-size: 0.85rem
+        font-size: 0.8rem
         padding: 0 0.4rem
-        color: #fff
+        color: #999
+        &.red
+          color: #fff
+          background-color: #e80000
+        &.orange
+          color: #fff
+          background-color: #ff7200
+        &.yellow
+          color: #fff
+          background-color: #f8b300
     .itemName
       width: 100%
       padding-right: 4rem

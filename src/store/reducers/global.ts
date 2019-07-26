@@ -2,6 +2,7 @@ import { handleActions } from 'redux-actions'
 import * as constants from 'constants/index'
 import { IGlobalModel } from 'model'
 import { defaultGlobalState } from '../defaultStates'
+import immutable from 'immutable'
 
 const globalReducer = handleActions<IGlobalModel>(
   {
@@ -24,6 +25,15 @@ const globalReducer = handleActions<IGlobalModel>(
     },
     [constants.GLOBAL_PLAY_BY_INDEX]: (state: any, action: any) => {
       return state.setIn(['player', 'playInfo'])
+    },
+    [constants.GLOBAL_CHANGE_RANKINFO_DATA]: (state: any, action: any) => {
+      return state.setIn(
+        ['rankInfo'],
+        immutable.fromJS({
+          info: action.payload.info,
+          songs: action.payload.songs
+        })
+      )
     }
   },
   defaultGlobalState

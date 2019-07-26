@@ -59,3 +59,13 @@ export const API_getRankList = () => {
     }
   })
 }
+/*
+ * 获取音乐歌单
+ */
+export const API_getPList = () => {
+  return axios.get(URL.GET_PLIST_URL, {
+    params: {
+      json: true
+    }
+  })
+}

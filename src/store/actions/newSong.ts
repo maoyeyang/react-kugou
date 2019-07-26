@@ -16,7 +16,7 @@ export const getNewSongData = (newSong: Object) => {
   return async (dispatch: Dispatch) => {
     if (immutable.is(newSong, immutable.fromJS({}))) {
       const res = await API_getNewSongData()
-      dispatch(changeNewSongData(immutable.fromJS(res.data)))
+      dispatch(changeNewSongData(res.data))
       return
     }
   }

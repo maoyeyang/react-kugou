@@ -3,7 +3,7 @@ import { Dispatch } from 'redux'
 import * as constants from 'constants/index'
 import immutable from 'immutable'
 import * as Lyric from 'common/js/lyric'
-import { API_getSongInfo, API_getSongLyric } from 'api'
+import { API_getSongInfo, API_getSongLyric, API_getRankInfo } from 'api'
 
 export const changeTabbarItem = createAction<{ tabbarItem: number }, number>(
   constants.GLOBAL_CHANGE_TABBAR_ITEM,
@@ -11,7 +11,6 @@ export const changeTabbarItem = createAction<{ tabbarItem: number }, number>(
     tabbarItem
   })
 )
-
 export const playSong = createAction<any, any>(
   constants.GLOBAL_PLAY_SONG,
   data => data
@@ -28,6 +27,21 @@ export const playByIndex = createAction<any, any>(
     index
   })
 )
+
+export const changeRankInfo = createAction<any, any>(
+  constants.GLOBAL_CHANGE_RANKINFO_DATA,
+  (data: any) => {
+    return data
+  }
+)
+
+export const getRankInfo = (rankid: number) => {
+  return async (dispatch: Dispatch) => {
+    const res = await API_getRankInfo(rankid)
+    dispatch(changeRankInfo(res.data))
+    return
+  }
+}
 
 export const getPlaySongData = (playSongData: any) => {
   return async (dispatch: Dispatch) => {
@@ -47,7 +61,6 @@ export const getPlaySongData = (playSongData: any) => {
         data = await getSongDataAndLyric(playSongData.data[index].hash)
       }
     }
-
     dispatch(
       playSong(
         immutable.fromJS({

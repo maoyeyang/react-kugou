@@ -7,7 +7,10 @@ import immutable from 'immutable'
 const newSongReducer = handleActions<INewSongModel>(
   {
     [NEWSONG_CHANGE_DATA]: (state: any, action: any) => {
-      return immutable.fromJS(action.payload)
+      return immutable.fromJS({
+        data: action.payload.data,
+        banner: action.payload.banner
+      })
     }
   },
   defaultNewSongState

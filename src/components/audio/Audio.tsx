@@ -34,7 +34,6 @@ class Audio extends React.PureComponent<AudioProps, AudioState> {
   public componentDidMount() {
     const audio = this.refs.audio as any
     audio.addEventListener('ended', () => {
-      console.log(this.player)
       this.props.playSong({
         hash: this.player.playInfo.hash,
         type: 'next',
