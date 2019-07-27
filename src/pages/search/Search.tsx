@@ -43,6 +43,7 @@ class Search extends React.PureComponent<SearchProps, SearchState> {
                 <input
                   className={styles.searchInput}
                   placeholder="歌手/歌名/拼音"
+                  value={this.state.keyword}
                   onChange={e => {
                     this.setState({
                       keyword: e.target.value
@@ -79,7 +80,17 @@ class Search extends React.PureComponent<SearchProps, SearchState> {
             {!this.state.showHot && (
               <div className={styles.result}>
                 <div className={styles.resultTitle}>
-                  共有{result.total}条数据
+                  <div>共有{result.total}条数据</div>
+                  <div
+                    onClick={() => {
+                      this.setState({
+                        showHot: true,
+                        keyword: ''
+                      })
+                    }}
+                  >
+                    清空
+                  </div>
                 </div>
                 <SongList styleType={1} data={this.props.result.toJS().list} />
               </div>
@@ -97,6 +108,12 @@ class Search extends React.PureComponent<SearchProps, SearchState> {
       })
   }
   public async componentDidMount() {
+    if (this.props.result.toJS().keyword) {
+      this.setState({
+        keyword: this.props.result.toJS().keyword,
+        showHot: false
+      })
+    }
     this.props.getHotData(this.props.hot)
   }
 }
