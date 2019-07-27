@@ -8,6 +8,7 @@ import Rank from 'pages/rank/Rank'
 import PList from 'pages/pList/PList'
 import SingerClass from 'pages/singerClass/SingerClass'
 import SingerList from 'pages/singerList/SingerList'
+import SingerInfo from 'pages/singerInfo/SingerInfo'
 import SongInfo from 'pages/songInfo/SongInfo'
 import RankInfo from 'pages/rankInfo/RankInfo'
 import PListInfo from 'pages/pListInfo/PListInfo'
@@ -27,6 +28,11 @@ export default class RouteConfig extends React.Component {
           <Route path="/home/singer" exact={true} component={SingerClass} />
           <Route path="/songinfo" exact={true} component={SongInfo} />
           <Route path="/rank/info/:rankid" exact={true} component={RankInfo} />
+          <Route
+            path="/singer/info/:singerid"
+            exact={true}
+            component={SingerInfo}
+          />
           <Route
             path="/singer/list/:classid"
             exact={true}

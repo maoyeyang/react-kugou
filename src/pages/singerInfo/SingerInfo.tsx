@@ -5,20 +5,20 @@ import GoBack from 'components/goBack/GoBack'
 import * as actions from 'store/actions'
 import SongList from 'components/songList/SongList'
 import Scroll from 'common/components/scroll/Scroll'
-import styles from './pListInfo.module.styl'
+import styles from './singerInfo.module.styl'
 
-interface PListInfoProps {
+interface SingerInfoProps {
   play: boolean
   match: any
-  getPListInfo: Function
+  getSingerInfoData: Function
   data: any
 }
-interface PListInfoState {
+interface SingerInfoState {
   button: boolean
 }
 
-class PListInfo extends React.PureComponent<PListInfoProps, PListInfoState> {
-  constructor(props: PListInfoProps) {
+class SingerInfo extends React.PureComponent<SingerInfoProps, SingerInfoState> {
+  constructor(props: SingerInfoProps) {
     super(props)
     this.state = {
       button: false
@@ -26,12 +26,14 @@ class PListInfo extends React.PureComponent<PListInfoProps, PListInfoState> {
   }
   public render() {
     const data = this.props.data.toJS()
-    if (JSON.stringify(data) === '{}') return null
+    if (JSON.stringify(data.info) === '{}') return null
     return (
       <div
-        className={styles.rankInfo + ' ' + (this.props.play ? styles.play : '')}
+        className={
+          styles.singerInfo + ' ' + (this.props.play ? styles.play : '')
+        }
       >
-        <GoBack styleType={false} text={data.info.specialname || '暂无数据'} />
+        <GoBack styleType={false} text={data.info.singername || '暂无数据'} />
         <Scroll scrollStyle={styles.scrollStyle}>
           <div>
             <div className={styles.top}>
@@ -65,14 +67,14 @@ class PListInfo extends React.PureComponent<PListInfoProps, PListInfoState> {
   }
   public async componentDidMount() {
     if (JSON.stringify(this.props.data.toJS()) === '{}') {
-      this.props.getPListInfo(this.props.match.params.specialid)
+      this.props.getSingerInfoData(this.props.match.params.singerid)
       return
     }
     if (
-      parseInt(this.props.match.params.specialid) !==
-      this.props.data.toJS().info.specialid
+      parseInt(this.props.match.params.singerid) !==
+      this.props.data.toJS().info.singerid
     ) {
-      this.props.getPListInfo(this.props.match.params.specialid)
+      this.props.getSingerInfoData(this.props.match.params.singerid)
     }
   }
 }
@@ -80,16 +82,17 @@ const mapState = (state: any) => {
   return {
     play:
       JSON.stringify(state.getIn(['global', 'player', 'playInfo'])) !== '{}',
-    data: state.getIn(['global', 'pListInfo'])
+    data: state.getIn(['singer', 'singerInfo'])
   }
 }
 const mapDispath = (dispatch: Dispatch) => {
   return {
-    getPListInfo: (payload: any) => actions.getPListInfo(payload)(dispatch)
+    getSingerInfoData: (payload: any) =>
+      actions.getSingerInfoData(payload)(dispatch)
   }
 }
 
 export default connect(
   mapState,
   mapDispath
-)(PListInfo)
+)(SingerInfo)

@@ -99,3 +99,13 @@ export const API_getSingerList = (classid: number) => {
     }
   })
 }
+/*
+ * 获取 歌手信息
+ */
+export const API_getSingerInfo = (singerid: number) => {
+  return axios.get(URL.GET_SINGER_INFO_URL + singerid, {
+    params: {
+      json: true
+    }
+  })
+}

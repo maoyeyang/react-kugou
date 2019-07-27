@@ -24,5 +24,9 @@ export const defaultSingerState: Model.ISingerModel = immutable.fromJS({
     classid: 0,
     classname: '',
     list: []
+  },
+  singerInfo: {
+    info: {},
+    list: []
   }
 })
