@@ -32,5 +32,10 @@ export const defaultSingerState: Model.ISingerModel = immutable.fromJS({
 })
 
 export const defaultSearchState: Model.ISearchModel = immutable.fromJS({
-  hot: []
+  hot: [],
+  result: {
+    keyword: '',
+    total: 0,
+    list: []
+  }
 })

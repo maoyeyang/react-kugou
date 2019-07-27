@@ -70,7 +70,8 @@ export const getPlaySongData = (playSongData: any) => {
       data = await getSongDataAndLyric(playSongData.hash)
     } else {
       let index = playSongData.data.findIndex(
-        (item: any) => item.hash === playSongData.hash
+        (item: any) =>
+          item.hash.toUpperCase() === playSongData.hash.toUpperCase()
       )
       if (playSongData.type === 'next') {
         index === playSongData.data.length - 1 ? (index = 0) : index++

@@ -121,3 +121,13 @@ export const API_getSearchHot = () => {
     }
   })
 }
+/*
+ * 获取 搜索  By keyword
+ */
+export const API_getSearchResult = (keyword: string | number) => {
+  return axios.get(URL.GET_SEARCH_RESULT_URL, {
+    params: {
+      keyword
+    }
+  })
+}
