@@ -12,6 +12,7 @@ import SingerInfo from 'pages/singerInfo/SingerInfo'
 import SongInfo from 'pages/songInfo/SongInfo'
 import RankInfo from 'pages/rankInfo/RankInfo'
 import PListInfo from 'pages/pListInfo/PListInfo'
+import Search from 'pages/search/Search'
 import Audio from 'components/audio/Audio'
 
 export default class RouteConfig extends React.Component {
@@ -27,6 +28,7 @@ export default class RouteConfig extends React.Component {
           <Route path="/home/plist" exact={true} component={PList} />
           <Route path="/home/singer" exact={true} component={SingerClass} />
           <Route path="/songinfo" exact={true} component={SongInfo} />
+          <Route path="/search" exact={true} component={Search} />
           <Route path="/rank/info/:rankid" exact={true} component={RankInfo} />
           <Route
             path="/singer/info/:singerid"

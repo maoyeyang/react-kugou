@@ -86,6 +86,13 @@ module.exports = function (proxy, allowedHost) {
         pathRewrite: {
           '^/api': '/'
         }
+      },
+      '/mobilecdn': {
+        target: "http://mobilecdn.kugou.com",
+        changeOrigin: true,
+        pathRewrite: {
+          '^/mobilecdn': '/'
+        }
       }
     },
     before(app, server) {

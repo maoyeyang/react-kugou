@@ -34,3 +34,6 @@ export interface IPListModel {
 export interface ISingerModel {
   [propName: string]: any
 }
+export interface ISearchModel {
+  [propName: string]: any
+}

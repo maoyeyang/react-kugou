@@ -109,3 +109,15 @@ export const API_getSingerInfo = (singerid: number) => {
     }
   })
 }
+/*
+ * 获取 热门搜索列表
+ */
+export const API_getSearchHot = () => {
+  return axios.get(URL.GET_SEARCH_HOT_URL, {
+    params: {
+      format: 'json',
+      plat: 0,
+      count: 30
+    }
+  })
+}
