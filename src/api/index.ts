@@ -131,3 +131,14 @@ export const API_getSearchResult = (keyword: string | number) => {
     }
   })
 }
+/*
+ * 获取专区数据
+ */
+export const API_getAreaData = (areaid: string | number) => {
+  return axios.get(URL.GET_AREA_DATA_URL, {
+    params: {
+      areaid,
+      r: 'area/share'
+    }
+  })
+}

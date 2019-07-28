@@ -39,3 +39,5 @@ export const defaultSearchState: Model.ISearchModel = immutable.fromJS({
     list: []
   }
 })
+export const defaultAreaState: Model.IAreaModel = immutable.fromJS({})
+

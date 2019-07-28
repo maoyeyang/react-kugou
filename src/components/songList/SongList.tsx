@@ -3,6 +3,7 @@ import { Dispatch } from 'redux'
 import { connect } from 'react-redux'
 import * as actions from 'store/actions'
 import styles from './songList.module.styl'
+import Toast from 'components/toast'
 
 interface SongListProps {
   data: any
@@ -52,7 +53,7 @@ class SongList extends React.PureComponent<SongListProps> {
               <div
                 className={styles.downLoad}
                 onClick={e => {
-                  console.log('下载')
+                  Toast.info('下载请使用酷狗客户端', 2000, () => {})
                   e.stopPropagation()
                 }}
               >

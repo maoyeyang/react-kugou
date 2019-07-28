@@ -81,7 +81,7 @@ module.exports = function (proxy, allowedHost) {
     public: allowedHost,
     proxy: {
       '/api': {
-        target: "http://m.kugou.com",
+        target: "https://m3ws.kugou.com",
         changeOrigin: true,
         pathRewrite: {
           '^/api': '/'
@@ -92,6 +92,13 @@ module.exports = function (proxy, allowedHost) {
         changeOrigin: true,
         pathRewrite: {
           '^/mobilecdn': '/'
+        }
+      },
+      '/service': {
+        target: "https://m2.service.kugou.com",
+        changeOrigin: true,
+        pathRewrite: {
+          '^/service': '/'
         }
       }
     },

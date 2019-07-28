@@ -104,7 +104,8 @@ class Search extends React.PureComponent<SearchProps, SearchState> {
     this.props.getSearchResult(text)
     this.state.showHot &&
       this.setState({
-        showHot: false
+        showHot: false,
+        keyword: text
       })
   }
   public async componentDidMount() {

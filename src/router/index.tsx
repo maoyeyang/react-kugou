@@ -13,6 +13,7 @@ import SongInfo from 'pages/songInfo/SongInfo'
 import RankInfo from 'pages/rankInfo/RankInfo'
 import PListInfo from 'pages/pListInfo/PListInfo'
 import Search from 'pages/search/Search'
+import Area from 'pages/area/Area'
 import Audio from 'components/audio/Audio'
 
 export default class RouteConfig extends React.Component {
@@ -30,6 +31,7 @@ export default class RouteConfig extends React.Component {
           <Route path="/songinfo" exact={true} component={SongInfo} />
           <Route path="/search" exact={true} component={Search} />
           <Route path="/rank/info/:rankid" exact={true} component={RankInfo} />
+          <Route path="/area/:areaid" exact={true} component={Area} />
           <Route
             path="/singer/info/:singerid"
             exact={true}

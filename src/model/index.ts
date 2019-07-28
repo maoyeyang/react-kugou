@@ -37,3 +37,6 @@ export interface ISingerModel {
 export interface ISearchModel {
   [propName: string]: any
 }
+export interface IAreaModel {
+  [propName: string]: any
+}

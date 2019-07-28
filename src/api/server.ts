@@ -12,6 +12,7 @@ axios.interceptors.request.use(
     return config
   },
   error => {
+    Toast.error('网络异常', 2000, () => {})
     return Promise.reject(error)
   }
 )
@@ -23,6 +24,7 @@ axios.interceptors.response.use(
   },
   error => {
     ToastLoding()
+    Toast.error('网络异常', 2000, () => {})
     return Promise.reject(error)
   }
 )

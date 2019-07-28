@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import Carousel from 'common/components/carousel/Carousel'
 import styles from './sliderImg.module.styl'
 
@@ -15,15 +16,21 @@ class SliderImg extends React.PureComponent<SliderImgModel> {
         {!!banner.length && (
           <Carousel>
             <div>
-              <a href="#">
+              <Link to="/area/101">
                 <img src={require('../../assests/images/banner.jpg')} />
-              </a>
+              </Link>
             </div>
             {banner.map((item: any, index: number) => (
               <div key={index}>
-                <a href={item.extra.tourl}>
+                <Link
+                  to={
+                    item.extra.tourl.indexOf('/yueku/category') !== -1
+                      ? `/area/${item.extra.tourl.split('=')[1]}`
+                      : `/plist/info/${item.extra.tourl.split('/').pop()}`
+                  }
+                >
                   <img src={item.imgurl} />
-                </a>
+                </Link>
               </div>
             ))}
           </Carousel>
