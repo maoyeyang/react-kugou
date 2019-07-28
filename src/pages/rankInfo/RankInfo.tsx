@@ -18,7 +18,7 @@ interface RankInfoProps {
 class RankInfo extends React.PureComponent<RankInfoProps, {}> {
   public render() {
     const data = this.props.data.toJS()
-    if (JSON.stringify(data) === '{}') return null
+    if (JSON.stringify(data.info) === '{}') return null
     return (
       <div
         className={styles.rankInfo + ' ' + (this.props.play ? styles.play : '')}
@@ -44,7 +44,7 @@ class RankInfo extends React.PureComponent<RankInfoProps, {}> {
     )
   }
   public async componentDidMount() {
-    if (JSON.stringify(this.props.data.toJS()) === '{}') {
+    if (JSON.stringify(this.props.data.toJS().info) === '{}') {
       this.props.getRankInfo(this.props.match.params.rankid)
       return
     }

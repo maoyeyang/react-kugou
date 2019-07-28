@@ -26,7 +26,7 @@ class PListInfo extends React.PureComponent<PListInfoProps, PListInfoState> {
   }
   public render() {
     const data = this.props.data.toJS()
-    if (JSON.stringify(data) === '{}') return null
+    if (JSON.stringify(data.info) === '{}' || !data.info) return null
     return (
       <div
         className={styles.rankInfo + ' ' + (this.props.play ? styles.play : '')}
@@ -64,13 +64,17 @@ class PListInfo extends React.PureComponent<PListInfoProps, PListInfoState> {
     )
   }
   public async componentDidMount() {
-    if (JSON.stringify(this.props.data.toJS()) === '{}') {
+    if (
+      JSON.stringify(this.props.data.toJS()) === '{}' ||
+      this.props.data.toJS().info === null
+    ) {
       this.props.getPListInfo(this.props.match.params.specialid)
       return
     }
     if (
+      this.props.data.toJS().info &&
       parseInt(this.props.match.params.specialid) !==
-      this.props.data.toJS().info.specialid
+        this.props.data.toJS().info.specialid
     ) {
       this.props.getPListInfo(this.props.match.params.specialid)
     }

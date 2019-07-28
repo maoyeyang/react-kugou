@@ -1,8 +1,16 @@
 import * as React from 'react'
 import Title from 'components/styleComponents/title/title'
 import Style_1 from './style_1/Style_1'
+import Style_2 from './style_2/Style_2'
+import Style_3 from './style_3/Style_3'
+import Style_4 from './style_4/Style_4'
+import Style_6 from './style_6/Style_6'
 import Style_8 from './style_8/Style_8'
 import Style_11 from './style_11/Style_11'
+import Style_13 from './style_13/Style_13'
+import Style_14 from './style_14/Style_14'
+import Style_15 from './style_15/Style_15'
+import Style_16 from './style_16/Style_16'
 
 interface StyleComponentProps {
   data: any
@@ -16,15 +24,30 @@ const StyleComponent: React.StatelessComponent<StyleComponentProps> = (
     case 1:
       return <Style_1 banner={data.module_data} />
     case 2:
-      return <div>2</div>
+      return (
+        <>
+          <Title title={data.name} />
+          <Style_2 data={data.module_data} />
+        </>
+      )
     case 3:
-      return <div>3</div>
+      return (
+        <>
+          <Title title={data.name} />
+          <Style_3 data={data.module_data} />
+        </>
+      )
     case 4:
-      return <div>4</div>
+      return <Style_4 data={data.module_data} />
     case 5:
       return <div>5</div>
     case 6:
-      return <div>6</div>
+      return (
+        <>
+          <Title title={data.name} />
+          <Style_6 data={data.module_data} />
+        </>
+      )
     case 7:
       return <div>7</div>
     case 8:
@@ -48,13 +71,33 @@ const StyleComponent: React.StatelessComponent<StyleComponentProps> = (
     case 12:
       return <div>12</div>
     case 13:
-      return <div>13</div>
+      return (
+        <>
+          <Title title={data.name} />
+          <Style_13 data={data.module_data} />
+        </>
+      )
     case 14:
-      return <div>14</div>
+      return (
+        <>
+          <Title title={data.name} />
+          <Style_14 data={data.module_data} />
+        </>
+      )
     case 15:
-      return <div>15</div>
+      return (
+        <>
+          <Title title={data.name} />
+          <Style_15 data={data.module_data} />
+        </>
+      )
     case 16:
-      return <div>16</div>
+      return (
+        <>
+          <Title title={data.name} />
+          <Style_16 data={data.module_data} />
+        </>
+      )
     case 17:
       return <div>17</div>
     default:
