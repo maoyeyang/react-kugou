@@ -1,7 +1,6 @@
 import * as React from 'react'
 import styles from './style_4.module.styl'
 import { Link } from 'react-router-dom'
-import { UrlToParams } from 'common/js/url'
 
 interface Style_4Props {
   data: any
